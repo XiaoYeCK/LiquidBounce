@@ -106,10 +106,8 @@ dependencies {
     api(libs.modmenu)
 
     // Recommended mods (on IDE)
-    api(libs.sodium)
-    api(libs.lithium)
-    runtimeOnly(libs.immediatelyFast)
-    runtimeOnly(libs.iris)
+    compileOnly(libs.sodium)
+    compileOnly(libs.lithium)
 
     // ViaFabricPlus
     api(libs.vfp.api)
