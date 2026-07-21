@@ -8,7 +8,11 @@
 /.settings/
 /.gradle/
 /build/
-/run/
+/run/*
+!/run/options.txt
+!/run/LiquidBounce/
+/run/LiquidBounce/*
+!/run/LiquidBounce/modules.json
 /mcef/
 /logs/
 /.kotlin/
