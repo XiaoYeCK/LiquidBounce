@@ -47,7 +47,7 @@
     }
 
     .title {
-      color: var(--menu-text-color);
+      color: var(--menu-child-button-text-color);
       font-weight: 600;
       font-size: 16px;
       transition: ease color 0.2s;
