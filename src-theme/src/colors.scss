@@ -3,7 +3,7 @@
        这些是全局的主题基石颜色，其他所有模块的颜色都会引用它们。
        修改这些值即可整体改变界面观感，实现"换肤"效果。 */
     --surface-color: #ffffff; /* 表面色/背景色：所有界面组件的底层底色，此处为纯白（浅色主题） */
-    --text-color: black; /* 主文字颜色：用于正文、标题等常规文本，此处为近黑（浅色主题） */
+    --text-color: #00000080; /* 主文字颜色：用于正文、标题等常规文本，此处为近黑（浅色主题） */
     --text-dimmed-color: #808080; /* 次级文字颜色：用于次要信息、说明、占位符等，比主文字略暗，起弱化作用 */
 
     --accent-color: #4677ff; /* 强调色（品牌主色）：用于按钮、选中态、边框、链接等需要突出的元素 */
@@ -182,7 +182,7 @@
     --menu-input-divider-color: var(--menu-base-color); /* 输入框分隔线 */
     --menu-input-error-border-color: var(--menu-error-color); /* 输入框校验出错时的边框 */
     --menu-input-icon-background-color: var(--accent-color); /* 输入框图标背景 */
-    --menu-switch-track-color: color-mix(in srgb, var(--menu-text-color) 45%, white); /* 菜单开关未开启滑轨颜色：浅色下呈浅灰 */
+    --menu-switch-track-color: var(--menu-text-color); /* 菜单开关未开启滑轨颜色：浅色下呈浅灰 */
     --menu-switch-thumb-color: var(--menu-text-color); /* 菜单开关未开启滑块颜色 */
     --menu-switch-track-active-color: color-mix(in srgb, var(--accent-color) 40%, white); /* 菜单开关开启滑轨颜色：浅色下呈淡蓝 */
     --menu-switch-thumb-active-color: var(--accent-color); /* 菜单开关开启滑块颜色 */
@@ -195,7 +195,7 @@
     --menu-modal-shadow-color: color-mix(in srgb, black 25%, transparent); /* 模态弹窗阴影（浅色主题下用黑色淡化） */
     --menu-modal-title-accent-color: var(--accent-color); /* 模态弹窗标题强调色 */
     --menu-modal-close-border-color: var(--menu-text-color); /* 弹窗关闭按钮边框 */
-    --menu-modal-close-hover-background-color: color-mix(in srgb, var(--menu-text-color) 10%, transparent); /* 关闭按钮悬停背景：主文字 10% 淡化 */
+    --menu-modal-close-hover-background-color: var(--menu-text-color); /* 关闭按钮悬停背景：主文字 10% 淡化 */
     --menu-modal-tab-background-color: var(--menu-base-36-color); /* 弹窗内部选项卡背景 */
     --menu-modal-tab-active-border-color: var(--accent-color); /* 弹窗内部激活选项卡边框 */
     --menu-select-header-background-color: var(--accent-color); /* 下拉选择器头部背景 */
