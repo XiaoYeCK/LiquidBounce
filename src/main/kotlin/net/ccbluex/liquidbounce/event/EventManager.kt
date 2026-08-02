@@ -128,7 +128,6 @@ import net.ccbluex.liquidbounce.event.events.SpaceSeperatedNamesChangeEvent
 import net.ccbluex.liquidbounce.event.events.SprintEvent
 import net.ccbluex.liquidbounce.event.events.TagEntityEvent
 import net.ccbluex.liquidbounce.event.events.TargetChangeEvent
-import net.ccbluex.liquidbounce.event.events.ThemeColorChangeEvent
 import net.ccbluex.liquidbounce.event.events.TickPacketProcessEvent
 import net.ccbluex.liquidbounce.event.events.TitleEvent
 import net.ccbluex.liquidbounce.event.events.UseCooldownEvent
@@ -253,7 +252,6 @@ internal val ALL_EVENT_CLASSES: Array<Class<out Event>> = arrayOf(
     SelectHotbarSlotSilentlyEvent::class.java,
     SpaceSeperatedNamesChangeEvent::class.java,
     ClickGuiScaleChangeEvent::class.java,
-    ThemeColorChangeEvent::class.java,
     BrowserUrlChangeEvent::class.java,
     TagEntityEvent::class.java,
     MouseScrollInHotbarEvent::class.java,

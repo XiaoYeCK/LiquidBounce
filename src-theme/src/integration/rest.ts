@@ -25,7 +25,6 @@ import type {
     RegistryItem,
     Server,
     Session,
-    Theme,
     VirtualScreen,
     World
 } from "./types";
@@ -639,14 +638,6 @@ export async function setHudEditorSelected(selected: boolean): Promise<void> {
         },
         body: JSON.stringify({selected})
     });
-}
-
-/**
- * @param id Use the ID from [getMetadata].
- */
-export async function getTheme(id: string): Promise<Theme> {
-    const response = await fetch(`${API_BASE}/client/theme/${id}`);
-    return await response.json();
 }
 
 /**

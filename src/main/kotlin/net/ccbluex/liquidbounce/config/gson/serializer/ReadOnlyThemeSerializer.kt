@@ -35,7 +35,6 @@ object ReadOnlyThemeSerializer : JsonSerializer<Theme> {
     ) = JsonObject().apply {
         addProperty("name", src.metadata.name)
         addProperty("id", src.metadata.id)
-        add("colors", serializeReadOnly(src.colors, context))
         add("settings", serializeReadOnly(src.settings, context))
     }
 

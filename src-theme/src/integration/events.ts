@@ -20,7 +20,6 @@ import type {
 export interface EventMap {
     socketReady: void;
 
-    themeColorChange: ThemeColorChangeEvent;
     clickGuiScaleChange: ClickGuiScaleChangeEvent;
     clickGuiValueChange: ClickGuiValueChangeEvent;
     spaceSeperatedNamesChange: SpaceSeperatedNamesChangeEvent;
@@ -77,12 +76,6 @@ export interface EventMap {
 
     //PlayerEvents.kt
     death: void;
-}
-
-export interface ThemeColorChangeEvent {
-    themeId: string;
-    name: "Accent" | "Tint";
-    value: number;
 }
 
 export interface ClickGuiValueChangeEvent {

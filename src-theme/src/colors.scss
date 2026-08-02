@@ -6,11 +6,11 @@
     --blue-text-color: #00AAAA;
 
     /* Foundation */
-    --surface-color: #000000;
-    --text-color: #ffffff;
-    --text-dimmed-color: #d3d3d3;
+    --surface-color: var(--light-color);
+    --text-color: #000000;
+    --text-dimmed-color: var(--mid-text-color);
 
-    --accent-color: #4677ff;
+    --accent-color: var(--blue-text-color);
     --accent-hover-color: color-mix(in srgb, var(--accent-color) 82%, black);
     --accent-subtle-background-color: color-mix(in srgb, var(--accent-color) 12%, transparent);
 
@@ -36,11 +36,11 @@
     --clickgui-base-90-color: color-mix(in srgb, var(--clickgui-base-color) 90%, transparent);
 
     --clickgui-description-background-color: var(--clickgui-base-90-color);
-    --clickgui-description-shadow-color: var(--clickgui-base-50-color);
+    --clickgui-description-shadow-color: color-mix(in srgb, black 30%, transparent);
     --clickgui-description-arrow-color: var(--clickgui-description-background-color);
 
-    --clickgui-overlay-background-color: color-mix(in srgb, black 60%, transparent);
-    --clickgui-panel-shadow-color: var(--clickgui-base-50-color);
+    --clickgui-overlay-background-color: var(--dark-color);
+    --clickgui-panel-shadow-color: color-mix(in srgb, black 30%, transparent);
     --clickgui-panel-header-background-color: var(--clickgui-base-90-color);
     --clickgui-panel-header-border-color: var(--accent-color);
     --clickgui-panel-body-background-color: var(--clickgui-base-80-color);
@@ -53,20 +53,20 @@
     --clickgui-module-settings-border-color: var(--accent-color);
 
     --clickgui-search-background-color: var(--clickgui-base-90-color);
-    --clickgui-search-shadow-color: var(--clickgui-base-50-color);
+    --clickgui-search-shadow-color: color-mix(in srgb, black 30%, transparent);
     --clickgui-search-border-color: var(--accent-color);
     --clickgui-search-enabled-color: var(--accent-color);
     --clickgui-search-alias-color: color-mix(in srgb, var(--clickgui-text-dimmed-color) 60%, transparent);
     --clickgui-search-hint-color: color-mix(in srgb, var(--clickgui-text-color) 40%, transparent);
 
     --clickgui-tabs-background-color: var(--clickgui-base-85-color);
-    --clickgui-tabs-shadow-color: var(--clickgui-base-50-color);
+    --clickgui-tabs-shadow-color: color-mix(in srgb, black 30%, transparent);
     --clickgui-tab-hover-background-color: var(--clickgui-base-70-color);
     --clickgui-tab-active-background-color: var(--accent-subtle-background-color);
     --clickgui-tab-active-border-color: var(--accent-color);
 
     --clickgui-window-background-color: var(--clickgui-base-80-color);
-    --clickgui-window-shadow-color: var(--clickgui-base-50-color);
+    --clickgui-window-shadow-color: color-mix(in srgb, black 30%, transparent);
     --clickgui-window-header-background-color: var(--clickgui-base-90-color);
     --clickgui-window-header-border-color: var(--accent-color);
 
@@ -88,11 +88,11 @@
     --clickgui-selection-chip-selected-color: var(--accent-color);
     --clickgui-selection-chip-remove-background-color: color-mix(in srgb, var(--error-color) 10%, transparent);
     --clickgui-selection-chip-remove-color: var(--error-color);
-    --clickgui-switch-track-color: color-mix(in srgb, var(--clickgui-text-color) 45%, black);
+    --clickgui-switch-track-color: color-mix(in srgb, var(--clickgui-text-color) 20%, transparent);
     --clickgui-switch-thumb-color: var(--clickgui-text-color);
     --clickgui-switch-track-active-color: color-mix(in srgb, var(--accent-color) 40%, black);
     --clickgui-switch-thumb-active-color: var(--accent-color);
-    --clickgui-slider-track-color: color-mix(in srgb, var(--clickgui-text-color) 20%, black);
+    --clickgui-slider-track-color: color-mix(in srgb, var(--clickgui-text-color) 20%, transparent);
     --clickgui-slider-handle-color: var(--clickgui-button-background-color);
     --clickgui-slider-fill-color: var(--clickgui-button-background-color);
     --clickgui-color-picker-border-color: var(--accent-color);
@@ -117,11 +117,11 @@
     --clickgui-hud-editor-draggable-element-position-outline-color: var(--accent-color);
     --clickgui-hud-editor-draggable-element-position-background-color: color-mix(in srgb, var(--accent-color) 30%, transparent);
     --clickgui-hud-editor-component-settings-background-color: var(--clickgui-base-80-color);
-    --clickgui-hud-editor-component-settings-shadow-color: var(--clickgui-base-50-color);
+    --clickgui-hud-editor-component-settings-shadow-color: color-mix(in srgb, black 30%, transparent);
     --clickgui-hud-editor-drawer-toggle-button-background-color: var(--accent-color);
     --clickgui-hud-editor-drawer-toggle-button-color: var(--text-color);
     --clickgui-hud-editor-drawer-background-color: var(--clickgui-base-80-color);
-    --clickgui-hud-editor-drawer-shadow-color: var(--clickgui-base-50-color);
+    --clickgui-hud-editor-drawer-shadow-color: color-mix(in srgb, black 30%, transparent);
     --clickgui-hud-editor-drawer-component-background-color: var(--clickgui-base-85-color);
     --clickgui-hud-editor-drawer-component-border-color: var(--clickgui-base-85-color);
     --clickgui-hud-editor-drawer-component-hover-background-color: var(--accent-subtle-background-color);
@@ -148,7 +148,7 @@
     --menu-search-border-color: var(--accent-color);
     --menu-button-container-background-color: var(--menu-base-68-color);
     --menu-option-bar-background-color: var(--menu-base-68-color);
-    --menu-option-bar-divider-color: var(--menu-base-36-color);
+    --menu-option-bar-divider-color: color-mix(in srgb, var(--menu-text-color) 12%, transparent);
     --menu-list-background-color: var(--menu-base-68-color);
     --menu-list-item-background-color: var(--menu-base-36-color);
     --menu-list-item-hover-background-color: var(--accent-color);
@@ -172,10 +172,10 @@
     --menu-child-button-icon-hover-color: var(--menu-title-button-icon-hover-color);
     --menu-child-button-hover-text-color: var(--accent-color);
     --menu-input-background-color: var(--menu-base-36-color);
-    --menu-input-divider-color: var(--menu-base-color);
+    --menu-input-divider-color: color-mix(in srgb, var(--menu-text-color) 15%, transparent);
     --menu-input-error-border-color: var(--menu-error-color);
     --menu-input-icon-background-color: var(--accent-color);
-    --menu-switch-track-color: color-mix(in srgb, var(--menu-text-color) 45%, black);
+    --menu-switch-track-color: color-mix(in srgb, var(--menu-text-color) 20%, transparent);
     --menu-switch-thumb-color: var(--menu-text-color);
     --menu-switch-track-active-color: color-mix(in srgb, var(--accent-color) 40%, black);
     --menu-switch-thumb-active-color: var(--accent-color);
@@ -183,9 +183,9 @@
     --menu-button-hover-background-color: var(--accent-hover-color);
     --menu-button-secondary-background-color: var(--menu-base-36-color);
     --menu-button-secondary-hover-background-color: var(--menu-base-color);
-    --menu-modal-backdrop-color: color-mix(in srgb, black 60%, transparent);
+    --menu-modal-backdrop-color: var(--dark-color);
     --menu-modal-background-color: var(--menu-base-80-color);
-    --menu-modal-shadow-color: var(--menu-base-50-color);
+    --menu-modal-shadow-color: color-mix(in srgb, black 30%, transparent);
     --menu-modal-title-accent-color: var(--accent-color);
     --menu-modal-close-border-color: var(--menu-text-color);
     --menu-modal-close-hover-background-color: color-mix(in srgb, var(--menu-text-color) 10%, transparent);
@@ -218,7 +218,7 @@
 
     --arraylist-base-color: var(--surface-color);
     --arraylist-text-color: var(--text-color);
-    --arraylist-tag-color: #aaaaaa;
+    --arraylist-tag-color: var(--blue-text-color);
     --arraylist-background-color: color-mix(in srgb, var(--arraylist-base-color) 68%, transparent);
     --arraylist-border-color: var(--accent-color);
 
