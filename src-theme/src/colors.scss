@@ -1,310 +1,339 @@
 :root {
-    /* Foundation */
-    --surface-color: #000000;
-    --text-color: #ffffff;
-    --text-dimmed-color: #d3d3d3;
+    /* ===== 基础色板（Foundation）=====
+       这些是全局的主题基石颜色，其他所有模块的颜色都会引用它们。
+       修改这些值即可整体改变界面观感，实现"换肤"效果。 */
+    --surface-color: #000000; /* 表面色/背景色：所有界面组件的底层底色，此处为纯黑 */
+    --text-color: #ffffff; /* 主文字颜色：用于正文、标题等常规文本，此处为纯白 */
+    --text-dimmed-color: #d3d3d3; /* 次级文字颜色：用于次要信息、说明、占位符等，比主文字略暗，起弱化作用 */
 
-    --accent-color: #4677ff;
+    --accent-color: #4677ff; /* 强调色（品牌主色）：用于按钮、选中态、边框、链接等需要突出的元素 */
     --accent-hover-color: color-mix(in srgb, var(--accent-color) 82%, black);
+    /* 强调色悬停变体：将强调色与黑色按 82:18 混合，得到偏深的悬停效果，用于鼠标移上时的反馈 */
     --accent-subtle-background-color: color-mix(in srgb, var(--accent-color) 12%, transparent);
-
-    --success-color: #4dac68;
-    --error-color: #fc4130;
-    --premium-color: #67d24a;
-    --warning-color: #efbf04;
+    /* 强调色淡背景：将强调色按 12% 透明度混合到背景上，形成极淡的强调色背景，常用于选中/激活项的高亮底 */
+    --success-color: #4dac68; /* 成功色：表示成功、开启、正向状态的绿色 */
+    --error-color: #fc4130; /* 错误色：表示失败、报错、负面状态的红色 */
+    --premium-color: #67d24a; /* 高级（Premium）标识色：用于标记会员/VIP 等高级账号 */
+    --warning-color: #efbf04; /* 警告色：表示警示、提醒状态的黄色 */
     --grid-color: color-mix(in srgb, #808080 25%, transparent);
+    /* 网格线颜色：灰色按 25% 透明度混合，用于背景网格等装饰性线条，避免过于抢眼 */
 
-    /* ClickGUI */
-    --clickgui-base-color: var(--surface-color);
-    --clickgui-text-color: var(--text-color);
-    --clickgui-text-dimmed-color: var(--text-dimmed-color);
-    --clickgui-grid-color: var(--grid-color);
+    /* ===== ClickGUI（点击式图形化设置界面）=====
+       即按打开设置界面的按钮界面，这里集中定义它的全部配色。 */
+    --clickgui-base-color: var(--surface-color); /* 界面基础底色：直接继承全局表面色（黑） */
+    --clickgui-text-color: var(--text-color); /* 界面正文颜色 */
+    --clickgui-text-dimmed-color: var(--text-dimmed-color); /* 界面次级文字颜色 */
+    --clickgui-grid-color: var(--grid-color); /* 界面背景网格线颜色 */
 
-    --clickgui-base-30-color: color-mix(in srgb, var(--clickgui-base-color) 30%, transparent);
-    --clickgui-base-36-color: color-mix(in srgb, var(--clickgui-base-color) 36%, transparent);
-    --clickgui-base-50-color: color-mix(in srgb, var(--clickgui-base-color) 50%, transparent);
-    --clickgui-base-60-color: color-mix(in srgb, var(--clickgui-base-color) 60%, transparent);
-    --clickgui-base-70-color: color-mix(in srgb, var(--clickgui-base-color) 70%, transparent);
-    --clickgui-base-80-color: color-mix(in srgb, var(--clickgui-base-color) 80%, transparent);
-    --clickgui-base-85-color: color-mix(in srgb, var(--clickgui-base-color) 85%, transparent);
-    --clickgui-base-90-color: color-mix(in srgb, var(--clickgui-base-color) 90%, transparent);
+    /* 基础色透明度阶梯：将基础底色按不同透明度混合到透明背景上，
+       得到一档由"几乎全透明"到"近乎实心"的层次，用于区分不同层级的控件背景。
+       数值越大越不透明、越实心。 */
+    --clickgui-base-30-color: color-mix(in srgb, var(--clickgui-base-color) 30%, transparent); /* 30% 透明度：极淡的底，用于极轻量的背景 */
+    --clickgui-base-36-color: color-mix(in srgb, var(--clickgui-base-color) 36%, transparent); /* 36% 透明度 */
+    --clickgui-base-50-color: color-mix(in srgb, var(--clickgui-base-color) 50%, transparent); /* 50% 透明度：半透明 */
+    --clickgui-base-60-color: color-mix(in srgb, var(--clickgui-base-color) 60%, transparent); /* 60% 透明度 */
+    --clickgui-base-70-color: color-mix(in srgb, var(--clickgui-base-color) 70%, transparent); /* 70% 透明度 */
+    --clickgui-base-80-color: color-mix(in srgb, var(--clickgui-base-color) 80%, transparent); /* 80% 透明度：较实心 */
+    --clickgui-base-85-color: color-mix(in srgb, var(--clickgui-base-color) 85%, transparent); /* 85% 透明度 */
+    --clickgui-base-90-color: color-mix(in srgb, var(--clickgui-base-color) 90%, transparent); /* 90% 透明度：近乎实心 */
 
-    --clickgui-description-background-color: var(--clickgui-base-90-color);
-    --clickgui-description-shadow-color: var(--clickgui-base-50-color);
-    --clickgui-description-arrow-color: var(--clickgui-description-background-color);
+    --clickgui-description-background-color: var(--clickgui-base-90-color); /* 模块/设置项描述文字的气泡背景（高不透明，保证可读性） */
+    --clickgui-description-shadow-color: var(--clickgui-base-50-color); /* 描述气泡的阴影颜色 */
+    --clickgui-description-arrow-color: var(--clickgui-description-background-color); /* 描述气泡的小箭头颜色，与背景一致形成整体 */
 
-    --clickgui-overlay-background-color: color-mix(in srgb, black 60%, transparent);
-    --clickgui-panel-shadow-color: var(--clickgui-base-50-color);
-    --clickgui-panel-header-background-color: var(--clickgui-base-90-color);
-    --clickgui-panel-header-border-color: var(--accent-color);
-    --clickgui-panel-body-background-color: var(--clickgui-base-80-color);
-    --clickgui-panel-toggle-icon-color: var(--clickgui-text-color);
+    --clickgui-overlay-background-color: color-mix(in srgb, black 60%, transparent); /* 界面覆盖层背景：黑色 60% 半透明，用于模态遮罩压暗底层内容 */
+    --clickgui-panel-shadow-color: var(--clickgui-base-50-color); /* 面板阴影颜色 */
+    --clickgui-panel-header-background-color: var(--clickgui-base-90-color); /* 面板标题栏背景 */
+    --clickgui-panel-header-border-color: var(--accent-color); /* 面板标题栏下划线/边框，用强调色突出 */
+    --clickgui-panel-body-background-color: var(--clickgui-base-80-color); /* 面板主体内容背景 */
+    --clickgui-panel-toggle-icon-color: var(--clickgui-text-color); /* 面板收起/展开切换图标的颜色 */
 
-    --clickgui-module-hover-background-color: var(--clickgui-base-85-color);
-    --clickgui-module-highlight-color: var(--accent-color);
-    --clickgui-module-enabled-color: var(--accent-color);
-    --clickgui-module-settings-background-color: var(--clickgui-base-50-color);
-    --clickgui-module-settings-border-color: var(--accent-color);
+    --clickgui-module-hover-background-color: var(--clickgui-base-85-color); /* 模块列表项鼠标悬停时的背景 */
+    --clickgui-module-highlight-color: var(--accent-color); /* 模块高亮色（如键盘导航定位到某模块时） */
+    --clickgui-module-enabled-color: var(--accent-color); /* 已启用模块的标识颜色 */
+    --clickgui-module-settings-background-color: var(--clickgui-base-50-color); /* 模块展开后的设置区背景 */
+    --clickgui-module-settings-border-color: var(--accent-color); /* 模块设置区的边框 */
 
-    --clickgui-search-background-color: var(--clickgui-base-90-color);
-    --clickgui-search-shadow-color: var(--clickgui-base-50-color);
-    --clickgui-search-border-color: var(--accent-color);
-    --clickgui-search-enabled-color: var(--accent-color);
-    --clickgui-search-alias-color: color-mix(in srgb, var(--clickgui-text-dimmed-color) 60%, transparent);
-    --clickgui-search-hint-color: color-mix(in srgb, var(--clickgui-text-color) 40%, transparent);
+    --clickgui-search-background-color: var(--clickgui-base-90-color); /* 顶部搜索框背景 */
+    --clickgui-search-shadow-color: var(--clickgui-base-50-color); /* 搜索框阴影 */
+    --clickgui-search-border-color: var(--accent-color); /* 搜索框边框 */
+    --clickgui-search-enabled-color: var(--accent-color); /* 搜索框处于激活状态时的强调色 */
+    --clickgui-search-alias-color: color-mix(in srgb, var(--clickgui-text-dimmed-color) 60%, transparent); /* 搜索结果中的别名文字，次级文字再加透明度，进一步弱化 */
+    --clickgui-search-hint-color: color-mix(in srgb, var(--clickgui-text-color) 40%, transparent); /* 搜索框占位提示（hint）文字，主文字变淡 */
 
-    --clickgui-tabs-background-color: var(--clickgui-base-85-color);
-    --clickgui-tabs-shadow-color: var(--clickgui-base-50-color);
-    --clickgui-tab-hover-background-color: var(--clickgui-base-70-color);
-    --clickgui-tab-active-background-color: var(--accent-subtle-background-color);
-    --clickgui-tab-active-border-color: var(--accent-color);
+    --clickgui-tabs-background-color: var(--clickgui-base-85-color); /* 左侧分类选项卡（Tab）容器背景 */
+    --clickgui-tabs-shadow-color: var(--clickgui-base-50-color); /* 选项卡容器阴影 */
+    --clickgui-tab-hover-background-color: var(--clickgui-base-70-color); /* 选项卡鼠标悬停背景 */
+    --clickgui-tab-active-background-color: var(--accent-subtle-background-color); /* 当前激活选项卡背景：淡强调色 */
+    --clickgui-tab-active-border-color: var(--accent-color); /* 当前激活选项卡边框：强调色 */
 
-    --clickgui-window-background-color: var(--clickgui-base-80-color);
-    --clickgui-window-shadow-color: var(--clickgui-base-50-color);
-    --clickgui-window-header-background-color: var(--clickgui-base-90-color);
-    --clickgui-window-header-border-color: var(--accent-color);
+    --clickgui-window-background-color: var(--clickgui-base-80-color); /* 悬浮窗口（如独立设置窗）背景 */
+    --clickgui-window-shadow-color: var(--clickgui-base-50-color); /* 悬浮窗口阴影 */
+    --clickgui-window-header-background-color: var(--clickgui-base-90-color); /* 悬浮窗口标题栏背景 */
+    --clickgui-window-header-border-color: var(--accent-color); /* 悬浮窗口标题栏下边框 */
 
-    --clickgui-global-settings-divider-color: color-mix(in srgb, var(--clickgui-text-color) 12%, transparent);
-    --clickgui-input-background-color: var(--clickgui-base-36-color);
-    --clickgui-input-border-color: var(--accent-color);
-    --clickgui-button-background-color: var(--accent-color);
-    --clickgui-button-hover-background-color: var(--accent-hover-color);
-    --clickgui-setting-group-border-color: var(--accent-color);
-    --clickgui-dropdown-trigger-background-color: var(--clickgui-button-background-color);
-    --clickgui-dropdown-background-color: var(--clickgui-base-color);
-    --clickgui-dropdown-border-color: var(--accent-color);
-    --clickgui-dropdown-option-color: var(--clickgui-text-dimmed-color);
-    --clickgui-dropdown-option-hover-color: var(--clickgui-text-color);
-    --clickgui-dropdown-option-selected-color: var(--accent-color);
-    --clickgui-selection-chip-background-color: var(--clickgui-base-30-color);
-    --clickgui-selection-chip-color: var(--clickgui-text-dimmed-color);
-    --clickgui-selection-chip-selected-background-color: var(--accent-subtle-background-color);
-    --clickgui-selection-chip-selected-color: var(--accent-color);
-    --clickgui-selection-chip-remove-background-color: color-mix(in srgb, var(--error-color) 10%, transparent);
-    --clickgui-selection-chip-remove-color: var(--error-color);
-    --clickgui-switch-track-color: color-mix(in srgb, var(--clickgui-text-color) 45%, black);
-    --clickgui-switch-thumb-color: var(--clickgui-text-color);
-    --clickgui-switch-track-active-color: color-mix(in srgb, var(--accent-color) 40%, black);
-    --clickgui-switch-thumb-active-color: var(--accent-color);
-    --clickgui-slider-track-color: color-mix(in srgb, var(--clickgui-text-color) 20%, black);
-    --clickgui-slider-handle-color: var(--clickgui-button-background-color);
-    --clickgui-slider-fill-color: var(--clickgui-button-background-color);
-    --clickgui-color-picker-border-color: var(--accent-color);
-    --clickgui-curve-accent-color: var(--accent-color);
-    --clickgui-curve-grid-color: var(--clickgui-grid-color);
-    --clickgui-curve-axis-color: var(--clickgui-text-dimmed-color);
+    --clickgui-global-settings-divider-color: color-mix(in srgb, var(--clickgui-text-color) 12%, transparent); /* 全局设置项之间的分隔线：主文字 12% 淡化的细线 */
+    --clickgui-input-background-color: var(--clickgui-base-36-color); /* 文本输入框背景 */
+    --clickgui-input-border-color: var(--accent-color); /* 文本输入框边框 */
+    --clickgui-button-background-color: var(--accent-color); /* 普通按钮背景：直接使用强调色 */
+    --clickgui-button-hover-background-color: var(--accent-hover-color); /* 按钮悬停背景：强调色加深 */
+    --clickgui-setting-group-border-color: var(--accent-color); /* 设置分组（Group）之间的分隔线 */
+    --clickgui-dropdown-trigger-background-color: var(--clickgui-button-background-color); /* 下拉框触发按钮背景 */
+    --clickgui-dropdown-background-color: var(--clickgui-base-color); /* 下拉列表弹出面板背景 */
+    --clickgui-dropdown-border-color: var(--accent-color); /* 下拉列表边框 */
+    --clickgui-dropdown-option-color: var(--clickgui-text-dimmed-color); /* 下拉选项文字（未选中） */
+    --clickgui-dropdown-option-hover-color: var(--clickgui-text-color); /* 下拉选项悬停文字 */
+    --clickgui-dropdown-option-selected-color: var(--accent-color); /* 下拉选中项文字：强调色 */
+    --clickgui-selection-chip-background-color: var(--clickgui-base-30-color); /* 选择标签（chip）背景 */
+    --clickgui-selection-chip-color: var(--clickgui-text-dimmed-color); /* 选择标签文字 */
+    --clickgui-selection-chip-selected-background-color: var(--accent-subtle-background-color); /* 选中标签背景：淡强调色 */
+    --clickgui-selection-chip-selected-color: var(--accent-color); /* 选中标签文字：强调色 */
+    --clickgui-selection-chip-remove-background-color: color-mix(in srgb, var(--error-color) 10%, transparent); /* 标签"移除"按钮背景：错误色 10% 淡红 */
+    --clickgui-selection-chip-remove-color: var(--error-color); /* 标签"移除"按钮图标：错误红色 */
+    --clickgui-switch-track-color: color-mix(in srgb, var(--clickgui-text-color) 45%, black); /* 开关（Switch）未开启时的滑轨颜色：白色 45% 与黑混合 */
+    --clickgui-switch-thumb-color: var(--clickgui-text-color); /* 开关未开启时的滑块（圆形按钮）颜色 */
+    --clickgui-switch-track-active-color: color-mix(in srgb, var(--accent-color) 40%, black); /* 开关开启时的滑轨颜色：强调色 40% 与黑混合 */
+    --clickgui-switch-thumb-active-color: var(--accent-color); /* 开关开启时的滑块颜色：强调色 */
+    --clickgui-slider-track-color: color-mix(in srgb, var(--clickgui-text-color) 20%, black); /* 滑块（Slider）未填充轨道颜色 */
+    --clickgui-slider-handle-color: var(--clickgui-button-background-color); /* 滑块的手柄（拖拽圆点）颜色 */
+    --clickgui-slider-fill-color: var(--clickgui-button-background-color); /* 滑块已填充部分的颜色 */
+    --clickgui-color-picker-border-color: var(--accent-color); /* 颜色选择器的边框 */
+    --clickgui-curve-accent-color: var(--accent-color); /* 曲线编辑器（如点击分布曲线）中的主曲线颜色 */
+    --clickgui-curve-grid-color: var(--clickgui-grid-color); /* 曲线编辑器的背景网格颜色 */
+    --clickgui-curve-axis-color: var(--clickgui-text-dimmed-color); /* 曲线编辑器的坐标轴颜色 */
 
-    --clickgui-hud-editor-grid-color: var(--clickgui-grid-color);
-    --clickgui-hud-editor-anchor-zone-border-color: color-mix(in srgb, var(--clickgui-text-color) 15%, transparent);
-    --clickgui-hud-editor-anchor-zone-background-color: color-mix(in srgb, var(--clickgui-text-color) 3%, transparent);
-    --clickgui-hud-editor-anchor-zone-active-border-color: var(--accent-color);
-    --clickgui-hud-editor-anchor-zone-active-background-color: color-mix(in srgb, var(--accent-color) 18%, transparent);
-    --clickgui-hud-editor-anchor-point-color: var(--clickgui-text-dimmed-color);
-    --clickgui-hud-editor-anchor-point-active-color: var(--accent-color);
-    --clickgui-hud-editor-anchor-point-active-ring-color: var(--accent-color);
-    --clickgui-hud-editor-anchor-point-active-shadow-color: color-mix(in srgb, var(--accent-color) 75%, transparent);
-    --clickgui-hud-editor-magnetic-guide-color: var(--accent-color);
-    --clickgui-hud-editor-magnetic-guide-shadow-color: color-mix(in srgb, var(--accent-color) 70%, transparent);
-    --clickgui-hud-editor-magnetic-reference-background-color: color-mix(in srgb, var(--accent-color) 55%, transparent);
-    --clickgui-hud-editor-draggable-element-outline-color: var(--accent-color);
-    --clickgui-hud-editor-draggable-element-background-color: color-mix(in srgb, var(--accent-color) 30%, transparent);
-    --clickgui-hud-editor-draggable-element-position-outline-color: var(--accent-color);
-    --clickgui-hud-editor-draggable-element-position-background-color: color-mix(in srgb, var(--accent-color) 30%, transparent);
-    --clickgui-hud-editor-component-settings-background-color: var(--clickgui-base-80-color);
-    --clickgui-hud-editor-component-settings-shadow-color: var(--clickgui-base-50-color);
-    --clickgui-hud-editor-drawer-toggle-button-background-color: var(--accent-color);
-    --clickgui-hud-editor-drawer-toggle-button-color: var(--text-color);
-    --clickgui-hud-editor-drawer-background-color: var(--clickgui-base-80-color);
-    --clickgui-hud-editor-drawer-shadow-color: var(--clickgui-base-50-color);
-    --clickgui-hud-editor-drawer-component-background-color: var(--clickgui-base-85-color);
-    --clickgui-hud-editor-drawer-component-border-color: var(--clickgui-base-85-color);
-    --clickgui-hud-editor-drawer-component-hover-background-color: var(--accent-subtle-background-color);
-    --clickgui-hud-editor-drawer-component-hover-border-color: var(--accent-color);
-    --clickgui-hud-editor-drawer-component-name-color: var(--clickgui-text-color);
-    --clickgui-hud-editor-drawer-component-description-color: var(--clickgui-text-dimmed-color);
+    /* --- HUD 编辑器（拖拽式屏幕元素布局工具）--- */
+    --clickgui-hud-editor-grid-color: var(--clickgui-grid-color); /* 编辑画布上的网格背景 */
+    --clickgui-hud-editor-anchor-zone-border-color: color-mix(in srgb, var(--clickgui-text-color) 15%, transparent); /* 锚点区域（屏幕九宫格分区）边框 */
+    --clickgui-hud-editor-anchor-zone-background-color: color-mix(in srgb, var(--clickgui-text-color) 3%, transparent); /* 锚点区域背景：主文字 3% 极淡 */
+    --clickgui-hud-editor-anchor-zone-active-border-color: var(--accent-color); /* 鼠标所在的活动锚点区域边框 */
+    --clickgui-hud-editor-anchor-zone-active-background-color: color-mix(in srgb, var(--accent-color) 18%, transparent); /* 活动锚点区域背景：淡强调色 */
+    --clickgui-hud-editor-anchor-point-color: var(--clickgui-text-dimmed-color); /* 锚点标记（十字）默认颜色 */
+    --clickgui-hud-editor-anchor-point-active-color: var(--accent-color); /* 当前选中锚点标记颜色 */
+    --clickgui-hud-editor-anchor-point-active-ring-color: var(--accent-color); /* 选中锚点外圈环颜色 */
+    --clickgui-hud-editor-anchor-point-active-shadow-color: color-mix(in srgb, var(--accent-color) 75%, transparent); /* 选中锚点外圈环的阴影 */
+    --clickgui-hud-editor-magnetic-guide-color: var(--accent-color); /* 磁吸对齐辅助线颜色 */
+    --clickgui-hud-editor-magnetic-guide-shadow-color: color-mix(in srgb, var(--accent-color) 70%, transparent); /* 磁吸辅助线阴影，起发光效果 */
+    --clickgui-hud-editor-magnetic-reference-background-color: color-mix(in srgb, var(--accent-color) 55%, transparent); /* 磁吸参照物（被对齐对象）高亮背景 */
+    --clickgui-hud-editor-draggable-element-outline-color: var(--accent-color); /* 可拖拽元素的外框颜色 */
+    --clickgui-hud-editor-draggable-element-background-color: color-mix(in srgb, var(--accent-color) 30%, transparent); /* 可拖拽元素的半透明强调色底 */
+    --clickgui-hud-editor-draggable-element-position-outline-color: var(--accent-color); /* 元素位置预览框的外框颜色 */
+    --clickgui-hud-editor-draggable-element-position-background-color: color-mix(in srgb, var(--accent-color) 30%, transparent); /* 元素位置预览框的背景 */
+    --clickgui-hud-editor-component-settings-background-color: var(--clickgui-base-80-color); /* 选中组件的设置面板背景 */
+    --clickgui-hud-editor-component-settings-shadow-color: var(--clickgui-base-50-color); /* 组件设置面板阴影 */
+    --clickgui-hud-editor-drawer-toggle-button-background-color: var(--accent-color); /* 抽屉面板展开/收起按钮背景 */
+    --clickgui-hud-editor-drawer-toggle-button-color: var(--text-color); /* 抽屉按钮上的文字/图标颜色 */
+    --clickgui-hud-editor-drawer-background-color: var(--clickgui-base-80-color); /* 抽屉面板（侧边组件列表）背景 */
+    --clickgui-hud-editor-drawer-shadow-color: var(--clickgui-base-50-color); /* 抽屉面板阴影 */
+    --clickgui-hud-editor-drawer-component-background-color: var(--clickgui-base-85-color); /* 抽屉中单个组件条目背景 */
+    --clickgui-hud-editor-drawer-component-border-color: var(--clickgui-base-85-color); /* 组件条目边框（默认与背景同色，即无边框） */
+    --clickgui-hud-editor-drawer-component-hover-background-color: var(--accent-subtle-background-color); /* 组件条目悬停背景：淡强调色 */
+    --clickgui-hud-editor-drawer-component-hover-border-color: var(--accent-color); /* 组件条目悬停边框：强调色 */
+    --clickgui-hud-editor-drawer-component-name-color: var(--clickgui-text-color); /* 组件条目名称文字 */
+    --clickgui-hud-editor-drawer-component-description-color: var(--clickgui-text-dimmed-color); /* 组件条目描述文字 */
 
-    /* Menu */
-    --menu-base-color: var(--surface-color);
-    --menu-text-color: var(--text-color);
-    --menu-text-dimmed-color: var(--text-dimmed-color);
-    --menu-error-color: var(--error-color);
-    --menu-account-premium-color: var(--premium-color);
-    --menu-button-loader-color: var(--menu-text-color);
+    /* ===== Menu（启动器/主菜单界面）=====
+       启动器界面的全部配色定义。 */
+    --menu-base-color: var(--surface-color); /* 菜单基础底色 */
+    --menu-text-color: var(--text-color); /* 菜单正文颜色 */
+    --menu-text-dimmed-color: var(--text-dimmed-color); /* 菜单次级文字颜色 */
+    --menu-error-color: var(--error-color); /* 菜单中的错误提示颜色 */
+    --menu-account-premium-color: var(--premium-color); /* 高级（Premium）账号标识颜色 */
+    --menu-button-loader-color: var(--menu-text-color); /* 按钮内的加载指示器（转圈动画）颜色 */
 
-    --menu-base-36-color: color-mix(in srgb, var(--menu-base-color) 36%, transparent);
-    --menu-base-50-color: color-mix(in srgb, var(--menu-base-color) 50%, transparent);
-    --menu-base-68-color: color-mix(in srgb, var(--menu-base-color) 68%, transparent);
-    --menu-base-70-color: color-mix(in srgb, var(--menu-base-color) 70%, transparent);
-    --menu-base-80-color: color-mix(in srgb, var(--menu-base-color) 80%, transparent);
-    --menu-base-90-color: color-mix(in srgb, var(--menu-base-color) 90%, transparent);
+    /* 菜单基础色透明度阶梯（同 ClickGUI 逻辑） */
+    --menu-base-36-color: color-mix(in srgb, var(--menu-base-color) 36%, transparent); /* 36%：浅背景，输入框等 */
+    --menu-base-50-color: color-mix(in srgb, var(--menu-base-color) 50%, transparent); /* 50%：半透明，阴影、列表等 */
+    --menu-base-68-color: color-mix(in srgb, var(--menu-base-color) 68%, transparent); /* 68%：按钮容器、列表背景等 */
+    --menu-base-70-color: color-mix(in srgb, var(--menu-base-color) 70%, transparent); /* 70% */
+    --menu-base-80-color: color-mix(in srgb, var(--menu-base-color) 80%, transparent); /* 80%：模态框背景 */
+    --menu-base-90-color: color-mix(in srgb, var(--menu-base-color) 90%, transparent); /* 90%：下拉面板等 */
 
-    --menu-search-background-color: var(--menu-base-36-color);
-    --menu-search-border-color: var(--accent-color);
-    --menu-button-container-background-color: var(--menu-base-68-color);
-    --menu-option-bar-background-color: var(--menu-base-68-color);
-    --menu-option-bar-divider-color: var(--menu-base-36-color);
-    --menu-list-background-color: var(--menu-base-68-color);
-    --menu-list-item-background-color: var(--menu-base-36-color);
-    --menu-list-item-hover-background-color: var(--accent-color);
-    --menu-list-item-hover-subtitle-color: var(--menu-text-color);
-    --menu-list-tag-background-color: var(--menu-base-36-color);
-    --menu-icon-text-button-background-color: var(--menu-base-36-color);
-    --menu-icon-text-button-accent-color: var(--accent-color);
-    --menu-icon-text-button-icon-background-color: var(--accent-color);
-    --menu-title-button-icon-color: var(--menu-text-color);
-    --menu-title-button-icon-hover-color: var(--accent-color);
-    --menu-main-button-background-color: var(--menu-base-68-color);
-    --menu-main-button-accent-color: var(--accent-color);
-    --menu-main-button-icon-background-color: var(--accent-color);
-    --menu-main-button-icon-hover-background-color: var(--menu-text-color);
-    --menu-main-button-icon-foreground-color: var(--menu-title-button-icon-color);
-    --menu-main-button-icon-hover-foreground-color: var(--menu-title-button-icon-hover-color);
-    --menu-main-button-text-color: var(--menu-text-color);
-    --menu-child-button-background-color: var(--accent-color);
-    --menu-child-button-hover-background-color: var(--menu-text-color);
-    --menu-child-button-icon-color: var(--menu-title-button-icon-color);
-    --menu-child-button-icon-hover-color: var(--menu-title-button-icon-hover-color);
-    --menu-child-button-hover-text-color: var(--accent-color);
-    --menu-input-background-color: var(--menu-base-36-color);
-    --menu-input-divider-color: var(--menu-base-color);
-    --menu-input-error-border-color: var(--menu-error-color);
-    --menu-input-icon-background-color: var(--accent-color);
-    --menu-switch-track-color: color-mix(in srgb, var(--menu-text-color) 45%, black);
-    --menu-switch-thumb-color: var(--menu-text-color);
-    --menu-switch-track-active-color: color-mix(in srgb, var(--accent-color) 40%, black);
-    --menu-switch-thumb-active-color: var(--accent-color);
-    --menu-button-background-color: var(--accent-color);
-    --menu-button-hover-background-color: var(--accent-hover-color);
-    --menu-button-secondary-background-color: var(--menu-base-36-color);
-    --menu-button-secondary-hover-background-color: var(--menu-base-color);
-    --menu-modal-backdrop-color: color-mix(in srgb, black 60%, transparent);
-    --menu-modal-background-color: var(--menu-base-80-color);
-    --menu-modal-shadow-color: var(--menu-base-50-color);
-    --menu-modal-title-accent-color: var(--accent-color);
-    --menu-modal-close-border-color: var(--menu-text-color);
-    --menu-modal-close-hover-background-color: color-mix(in srgb, var(--menu-text-color) 10%, transparent);
-    --menu-modal-tab-background-color: var(--menu-base-36-color);
-    --menu-modal-tab-active-border-color: var(--accent-color);
-    --menu-select-header-background-color: var(--accent-color);
-    --menu-select-options-background-color: var(--menu-base-90-color);
-    --menu-wrapped-setting-header-background-color: var(--menu-base-36-color);
-    --menu-wrapped-setting-content-background-color: var(--menu-base-90-color);
-    --menu-header-notification-background-color: var(--menu-base-68-color);
-    --menu-header-notification-icon-background-color: var(--accent-color);
-    --menu-header-notification-icon-error-background-color: var(--menu-error-color);
-    --menu-account-header-background-color: var(--menu-base-68-color);
-    --menu-account-switcher-background-color: var(--menu-base-90-color);
-    --menu-account-search-background-color: var(--menu-base-36-color);
-    --menu-account-search-border-color: var(--accent-color);
+    --menu-search-background-color: var(--menu-base-36-color); /* 菜单搜索框背景 */
+    --menu-search-border-color: var(--accent-color); /* 菜单搜索框边框 */
+    --menu-button-container-background-color: var(--menu-base-68-color); /* 按钮容器背景 */
+    --menu-option-bar-background-color: var(--menu-base-68-color); /* 顶部/侧边选项栏背景 */
+    --menu-option-bar-divider-color: var(--menu-base-36-color); /* 选项栏内部分隔线 */
+    --menu-list-background-color: var(--menu-base-68-color); /* 列表（如账号列表、服务器列表）背景 */
+    --menu-list-item-background-color: var(--menu-base-36-color); /* 列表中单个条目背景 */
+    --menu-list-item-hover-background-color: var(--accent-color); /* 列表条目悬停背景：强调色 */
+    --menu-list-item-hover-subtitle-color: var(--menu-text-color); /* 列表条目悬停时的副标题文字颜色 */
+    --menu-list-tag-background-color: var(--menu-base-36-color); /* 列表条目的标签（Tag）背景 */
+    --menu-icon-text-button-background-color: var(--menu-base-36-color); /* 图标+文字组合按钮的背景 */
+    --menu-icon-text-button-accent-color: var(--accent-color); /* 图标+文字按钮的强调色部分 */
+    --menu-icon-text-button-icon-background-color: var(--accent-color); /* 图标+文字按钮的图标背景 */
+    --menu-title-button-icon-color: var(--menu-text-color); /* 标题栏按钮图标默认颜色 */
+    --menu-title-button-icon-hover-color: var(--accent-color); /* 标题栏按钮图标悬停颜色 */
+    --menu-main-button-background-color: var(--menu-base-68-color); /* 主菜单大按钮背景 */
+    --menu-main-button-accent-color: var(--accent-color); /* 主菜单大按钮的强调色 */
+    --menu-main-button-icon-background-color: var(--accent-color); /* 主菜单大按钮图标背景 */
+    --menu-main-button-icon-hover-background-color: var(--menu-text-color); /* 主菜单大按钮图标悬停背景 */
+    --menu-main-button-icon-foreground-color: var(--menu-title-button-icon-color); /* 主菜单大按钮图标前景色 */
+    --menu-main-button-icon-hover-foreground-color: var(--menu-title-button-icon-hover-color); /* 主菜单大按钮图标悬停前景色 */
+    --menu-main-button-text-color: var(--menu-text-color); /* 主菜单大按钮文字颜色 */
+    --menu-child-button-background-color: var(--accent-color); /* 二级（子级）按钮背景 */
+    --menu-child-button-hover-background-color: var(--menu-text-color); /* 二级按钮悬停背景 */
+    --menu-child-button-icon-color: var(--menu-title-button-icon-color); /* 二级按钮图标颜色 */
+    --menu-child-button-icon-hover-color: var(--menu-title-button-icon-hover-color); /* 二级按钮图标悬停颜色 */
+    --menu-child-button-hover-text-color: var(--accent-color); /* 二级按钮悬停时文字颜色 */
+    --menu-input-background-color: var(--menu-base-36-color); /* 菜单输入框背景 */
+    --menu-input-divider-color: var(--menu-base-color); /* 输入框分隔线 */
+    --menu-input-error-border-color: var(--menu-error-color); /* 输入框校验出错时的边框 */
+    --menu-input-icon-background-color: var(--accent-color); /* 输入框图标背景 */
+    --menu-switch-track-color: color-mix(in srgb, var(--menu-text-color) 45%, black); /* 菜单开关未开启滑轨颜色 */
+    --menu-switch-thumb-color: var(--menu-text-color); /* 菜单开关未开启滑块颜色 */
+    --menu-switch-track-active-color: color-mix(in srgb, var(--accent-color) 40%, black); /* 菜单开关开启滑轨颜色 */
+    --menu-switch-thumb-active-color: var(--accent-color); /* 菜单开关开启滑块颜色 */
+    --menu-button-background-color: var(--accent-color); /* 菜单普通按钮背景 */
+    --menu-button-hover-background-color: var(--accent-hover-color); /* 菜单普通按钮悬停背景 */
+    --menu-button-secondary-background-color: var(--menu-base-36-color); /* 次级（次要）按钮背景 */
+    --menu-button-secondary-hover-background-color: var(--menu-base-color); /* 次级按钮悬停背景 */
+    --menu-modal-backdrop-color: color-mix(in srgb, black 60%, transparent); /* 模态弹窗遮罩：黑色 60% 半透明 */
+    --menu-modal-background-color: var(--menu-base-80-color); /* 模态弹窗主体背景 */
+    --menu-modal-shadow-color: var(--menu-base-50-color); /* 模态弹窗阴影 */
+    --menu-modal-title-accent-color: var(--accent-color); /* 模态弹窗标题强调色 */
+    --menu-modal-close-border-color: var(--menu-text-color); /* 弹窗关闭按钮边框 */
+    --menu-modal-close-hover-background-color: color-mix(in srgb, var(--menu-text-color) 10%, transparent); /* 关闭按钮悬停背景：主文字 10% 淡化 */
+    --menu-modal-tab-background-color: var(--menu-base-36-color); /* 弹窗内部选项卡背景 */
+    --menu-modal-tab-active-border-color: var(--accent-color); /* 弹窗内部激活选项卡边框 */
+    --menu-select-header-background-color: var(--accent-color); /* 下拉选择器头部背景 */
+    --menu-select-options-background-color: var(--menu-base-90-color); /* 下拉选择器选项面板背景 */
+    --menu-wrapped-setting-header-background-color: var(--menu-base-36-color); /* 折叠设置（Wrapped Setting）头部背景 */
+    --menu-wrapped-setting-content-background-color: var(--menu-base-90-color); /* 折叠设置展开后的内容区背景 */
+    --menu-header-notification-background-color: var(--menu-base-68-color); /* 顶部通知气泡背景 */
+    --menu-header-notification-icon-background-color: var(--accent-color); /* 通知图标背景（普通通知） */
+    --menu-header-notification-icon-error-background-color: var(--menu-error-color); /* 通知图标背景（错误通知） */
+    --menu-account-header-background-color: var(--menu-base-68-color); /* 账号面板头部背景 */
+    --menu-account-switcher-background-color: var(--menu-base-90-color); /* 账号切换器下拉面板背景 */
+    --menu-account-search-background-color: var(--menu-base-36-color); /* 账号搜索框背景 */
+    --menu-account-search-border-color: var(--accent-color); /* 账号搜索框边框 */
 
-    /* HUD */
-    --tabgui-base-color: var(--surface-color);
-    --tabgui-text-color: var(--text-color);
-    --tabgui-text-dimmed-color: var(--text-dimmed-color);
-    --tabgui-base-36-color: color-mix(in srgb, var(--tabgui-base-color) 36%, transparent);
-    --tabgui-base-50-color: color-mix(in srgb, var(--tabgui-base-color) 50%, transparent);
-    --tabgui-base-68-color: color-mix(in srgb, var(--tabgui-base-color) 68%, transparent);
-    --tabgui-icon-background-color: var(--tabgui-base-68-color);
-    --tabgui-category-background-color: var(--tabgui-base-50-color);
-    --tabgui-category-active-background-color: var(--accent-color);
-    --tabgui-module-selected-background-color: var(--tabgui-base-36-color);
-    --tabgui-modules-background-color: var(--tabgui-base-50-color);
+    /* ===== HUD（游戏内屏幕叠加元素）=====
+       游戏中覆盖在屏幕上显示的各种信息元素配色。 */
 
-    --arraylist-base-color: var(--surface-color);
-    --arraylist-text-color: var(--text-color);
-    --arraylist-tag-color: #aaaaaa;
-    --arraylist-background-color: color-mix(in srgb, var(--arraylist-base-color) 68%, transparent);
-    --arraylist-border-color: var(--accent-color);
+    /* --- TabGUI（TAB 键切换的分类导航菜单）--- */
+    --tabgui-base-color: var(--surface-color); /* TabGUI 基础底色 */
+    --tabgui-text-color: var(--text-color); /* TabGUI 文字颜色 */
+    --tabgui-text-dimmed-color: var(--text-dimmed-color); /* TabGUI 次级文字颜色 */
+    --tabgui-base-36-color: color-mix(in srgb, var(--tabgui-base-color) 36%, transparent); /* 36%：选中模块条目背景 */
+    --tabgui-base-50-color: color-mix(in srgb, var(--tabgui-base-color) 50%, transparent); /* 50%：分类/模块列表背景 */
+    --tabgui-base-68-color: color-mix(in srgb, var(--tabgui-base-color) 68%, transparent); /* 68%：图标背景 */
+    --tabgui-icon-background-color: var(--tabgui-base-68-color); /* 分类图标背景 */
+    --tabgui-category-background-color: var(--tabgui-base-50-color); /* 分类条目背景 */
+    --tabgui-category-active-background-color: var(--accent-color); /* 当前激活分类背景：强调色 */
+    --tabgui-module-selected-background-color: var(--tabgui-base-36-color); /* 当前选中模块的背景 */
+    --tabgui-modules-background-color: var(--tabgui-base-50-color); /* 模块列表背景 */
 
-    --targethud-base-color: var(--surface-color);
-    --targethud-text-color: var(--text-color);
-    --targethud-text-dimmed-color: var(--text-dimmed-color);
-    --targethud-base-30-color: color-mix(in srgb, var(--targethud-base-color) 30%, transparent);
-    --targethud-base-68-color: color-mix(in srgb, var(--targethud-base-color) 68%, transparent);
-    --targethud-background-color: var(--targethud-base-68-color);
-    --targethud-armor-point-background-color: var(--targethud-base-30-color);
-    --targethud-armor-point-active-color: var(--accent-color);
-    --targethud-health-progress-color: var(--hotbar-health-color);
+    /* --- ArrayList（已启用模块列表）--- */
+    --arraylist-base-color: var(--surface-color); /* ArrayList 基础底色 */
+    --arraylist-text-color: var(--text-color); /* 模块名称文字颜色 */
+    --arraylist-tag-color: #aaaaaa; /* 模块标签/状态文字颜色（如隐藏标记），灰色 */
+    --arraylist-background-color: color-mix(in srgb, var(--arraylist-base-color) 68%, transparent); /* 列表条目的半透明背景 */
+    --arraylist-border-color: var(--accent-color); /* 列表条目左侧的强调色竖线/边框 */
 
-    --blockcounter-base-color: var(--surface-color);
-    --blockcounter-background-color: color-mix(in srgb, var(--blockcounter-base-color) 68%, transparent);
+    /* --- TargetHUD（目标信息面板，显示所瞄准玩家的血量等）--- */
+    --targethud-base-color: var(--surface-color); /* TargetHUD 基础底色 */
+    --targethud-text-color: var(--text-color); /* 目标名称等文字颜色 */
+    --targethud-text-dimmed-color: var(--text-dimmed-color); /* 目标次级文字（如"距离"） */
+    --targethud-base-30-color: color-mix(in srgb, var(--targethud-base-color) 30%, transparent); /* 30%：护甲格点背景 */
+    --targethud-base-68-color: color-mix(in srgb, var(--targethud-base-color) 68%, transparent); /* 68%：面板背景 */
+    --targethud-background-color: var(--targethud-base-68-color); /* 目标面板整体背景 */
+    --targethud-armor-point-background-color: var(--targethud-base-30-color); /* 护甲值格点未填充部分背景 */
+    --targethud-armor-point-active-color: var(--accent-color); /* 护甲值格点已填充部分颜色 */
+    --targethud-health-progress-color: var(--hotbar-health-color); /* 血量进度条颜色，复用快捷栏血量颜色 */
 
-    --hotbar-base-color: var(--surface-color);
-    --hotbar-text-color: var(--text-color);
-    --hotbar-base-68-color: color-mix(in srgb, var(--hotbar-base-color) 68%, transparent);
-    --hotbar-armor-color: #49ead6;
-    --hotbar-air-color: #aac1e3;
-    --hotbar-absorption-color: #d4af37;
-    --hotbar-experience-color: #88c657;
-    --hotbar-health-color: #fc4130;
-    --hotbar-hunger-color: #b88458;
-    --hotbar-status-background-color: var(--hotbar-base-68-color);
-    --hotbar-slot-background-color: var(--hotbar-base-68-color);
-    --hotbar-slot-border-color: var(--accent-color);
-    --hotbar-item-name-background-color: var(--hotbar-base-68-color);
+    /* --- BlockCounter（方块破坏/放置计数）--- */
+    --blockcounter-base-color: var(--surface-color); /* BlockCounter 基础底色 */
+    --blockcounter-background-color: color-mix(in srgb, var(--blockcounter-base-color) 68%, transparent); /* 计数面板半透明背景 */
 
-    --scoreboard-base-color: var(--surface-color);
-    --scoreboard-base-50-color: color-mix(in srgb, var(--scoreboard-base-color) 50%, transparent);
-    --scoreboard-base-68-color: color-mix(in srgb, var(--scoreboard-base-color) 68%, transparent);
-    --scoreboard-header-background-color: var(--scoreboard-base-68-color);
-    --scoreboard-body-background-color: var(--scoreboard-base-50-color);
+    /* --- Hotbar（快捷栏，含玩家状态信息）--- */
+    --hotbar-base-color: var(--surface-color); /* 快捷栏基础底色 */
+    --hotbar-text-color: var(--text-color); /* 快捷栏文字颜色 */
+    --hotbar-base-68-color: color-mix(in srgb, var(--hotbar-base-color) 68%, transparent); /* 68%：槽位/状态面板背景 */
+    --hotbar-armor-color: #49ead6; /* 护甲值条颜色（青色） */
+    --hotbar-air-color: #aac1e3; /* 氧气值条颜色（浅蓝） */
+    --hotbar-absorption-color: #d4af37; /* 吸收值（金心）颜色（金色） */
+    --hotbar-experience-color: #88c657; /* 经验值条颜色（绿色） */
+    --hotbar-health-color: #fc4130; /* 生命值条颜色（红色） */
+    --hotbar-hunger-color: #b88458; /* 饥饿值条颜色（棕色） */
+    --hotbar-status-background-color: var(--hotbar-base-68-color); /* 玩家状态（血量/饥饿等）面板背景 */
+    --hotbar-slot-background-color: var(--hotbar-base-68-color); /* 物品槽位背景 */
+    --hotbar-slot-border-color: var(--accent-color); /* 当前选中槽位的边框：强调色 */
+    --hotbar-item-name-background-color: var(--hotbar-base-68-color); /* 物品名称显示条背景 */
 
-    --keystrokes-base-color: var(--surface-color);
-    --keystrokes-text-color: var(--text-color);
-    --keystrokes-background-color: color-mix(in srgb, var(--keystrokes-base-color) 68%, transparent);
-    --keystrokes-active-color: var(--accent-color);
+    /* --- Scoreboard（记分板）--- */
+    --scoreboard-base-color: var(--surface-color); /* 记分板基础底色 */
+    --scoreboard-base-50-color: color-mix(in srgb, var(--scoreboard-base-color) 50%, transparent); /* 50%：记分板主体背景 */
+    --scoreboard-base-68-color: color-mix(in srgb, var(--scoreboard-base-color) 68%, transparent); /* 68%：标题栏背景 */
+    --scoreboard-header-background-color: var(--scoreboard-base-68-color); /* 记分板标题背景 */
+    --scoreboard-body-background-color: var(--scoreboard-base-50-color); /* 记分板内容区背景 */
 
-    --item-damage-base-color: var(--surface-color);
-    --item-damage-background-color: color-mix(in srgb, var(--item-damage-base-color) 68%, transparent);
-    --item-enchant-glow-start-color: rgba(112, 48, 160, 0.8);
-    --item-enchant-glow-end-color: rgba(255, 105, 180, 0);
-    --item-count-shadow-color: #000000;
-    --inventory-background-color: color-mix(in srgb, var(--surface-color) 50%, transparent);
+    /* --- Keystrokes（按键可视化，显示正在按下的键）--- */
+    --keystrokes-base-color: var(--surface-color); /* Keystrokes 基础底色 */
+    --keystrokes-text-color: var(--text-color); /* 按键文字颜色 */
+    --keystrokes-background-color: color-mix(in srgb, var(--keystrokes-base-color) 68%, transparent); /* 按键格背景 */
+    --keystrokes-active-color: var(--accent-color); /* 按键被按下时的高亮颜色 */
 
-    --keybinds-base-color: var(--surface-color);
-    --keybinds-text-color: var(--text-color);
-    --keybinds-enabled-color: var(--success-color);
-    --keybinds-base-68-color: color-mix(in srgb, var(--keybinds-base-color) 68%, transparent);
-    --keybinds-text-muted-color: color-mix(in srgb, var(--keybinds-text-color) 65%, transparent);
-    --keybinds-background-color: var(--keybinds-base-68-color);
-    --keybinds-header-background-color: var(--scoreboard-base-50-color);
-    --keybinds-accent-color: var(--accent-color);
+    /* --- ItemDamage & Inventory（物品耐久度/附魔外观 & 背包）--- */
+    --item-damage-base-color: var(--surface-color); /* 耐久度条基础底色 */
+    --item-damage-background-color: color-mix(in srgb, var(--item-damage-base-color) 68%, transparent); /* 耐久度条背景 */
+    --item-enchant-glow-start-color: rgba(112, 48, 160, 0.8); /* 附魔物品发光渐变的起始色（紫色 80% 不透明） */
+    --item-enchant-glow-end-color: rgba(255, 105, 180, 0); /* 附魔发光渐变结束色（粉色 0% 透明，形成从紫到粉的消隐辉光） */
+    --item-count-shadow-color: #000000; /* 物品数量文字阴影 */
+    --inventory-background-color: color-mix(in srgb, var(--surface-color) 50%, transparent); /* 背包界面半透明背景 */
 
-    --effects-amplifier-color: var(--error-color);
-    --effects-name-color: var(--text-color);
-    --effects-background-color: color-mix(in srgb, var(--surface-color) 50%, transparent);
-    --effects-duration-color: var(--text-color);
+    /* --- Keybinds（按键绑定列表）--- */
+    --keybinds-base-color: var(--surface-color); /* Keybinds 基础底色 */
+    --keybinds-text-color: var(--text-color); /* 按键绑定文字颜色 */
+    --keybinds-enabled-color: var(--success-color); /* 已启用绑定的标识颜色（绿色） */
+    --keybinds-base-68-color: color-mix(in srgb, var(--keybinds-base-color) 68%, transparent); /* 68%：列表背景 */
+    --keybinds-text-muted-color: color-mix(in srgb, var(--keybinds-text-color) 65%, transparent); /* 弱化的文字（如未绑定提示） */
+    --keybinds-background-color: var(--keybinds-base-68-color); /* 列表整体背景 */
+    --keybinds-header-background-color: var(--scoreboard-base-50-color); /* 列表标题栏背景（复用记分板色） */
+    --keybinds-accent-color: var(--accent-color); /* 按键绑定面板的强调色 */
 
-    --notification-background-color: color-mix(in srgb, var(--surface-color) 68%, transparent);
-    --notification-success-color: var(--success-color);
-    --notification-error-color: var(--error-color);
-    --notification-info-color: var(--accent-color);
-    --notification-toggle-knob-color: var(--text-color);
-    --notification-title-color: var(--text-color);
-    --notification-message-color: var(--text-dimmed-color);
+    /* --- Effects（Buff/状态效果图标）--- */
+    --effects-amplifier-color: var(--error-color); /* 效果等级数字颜色（红色） */
+    --effects-name-color: var(--text-color); /* 效果名称文字颜色 */
+    --effects-background-color: color-mix(in srgb, var(--surface-color) 50%, transparent); /* 效果图标面板半透明背景 */
+    --effects-duration-color: var(--text-color); /* 效果剩余时间文字颜色 */
 
-    /* Special visuals */
-    --tooltip-background-color: var(--accent-color);
-    --tooltip-text-color: var(--text-color);
+    /* --- Notification（游戏内通知弹窗）--- */
+    --notification-background-color: color-mix(in srgb, var(--surface-color) 68%, transparent); /* 通知弹窗背景 */
+    --notification-success-color: var(--success-color); /* 成功类通知的图标/强调色 */
+    --notification-error-color: var(--error-color); /* 错误类通知的图标/强调色 */
+    --notification-info-color: var(--accent-color); /* 普通信息类通知的图标/强调色 */
+    --notification-toggle-knob-color: var(--text-color); /* 通知中开关控件的滑块颜色 */
+    --notification-title-color: var(--text-color); /* 通知标题文字 */
+    --notification-message-color: var(--text-dimmed-color); /* 通知正文/描述文字 */
 
-    --animated-logo-banner-start-color: var(--accent-color);
-    --animated-logo-banner-middle-color: var(--error-color);
-    --animated-logo-banner-end-color: var(--accent-color);
-    --animated-logo-text-start-color: #dbe6ff;
-    --animated-logo-text-middle-color: #ffd4cf;
-    --animated-logo-text-end-color: #dbe6ff;
-    --animated-logo-foreground-color: var(--text-color);
-    --animated-logo-divider-color: var(--text-color);
-    --animated-logo-anniversary-highlight-color: var(--warning-color);
-    --animated-logo-glow-primary-color: color-mix(in srgb, var(--accent-color) 22%, transparent);
-    --animated-logo-glow-secondary-color: color-mix(in srgb, var(--error-color) 12%, transparent);
+    /* ===== 特殊视觉效果（Special visuals）=====
+       装饰性、动画类元素的配色。 */
 
-    --confetti-color-1: #4677ff;
-    --confetti-color-2: #fc4130;
-    --confetti-color-3: #67d24a;
-    --confetti-color-4: #ffd166;
-    --confetti-color-5: #ffffff;
-    --confetti-color-6: #8ad9ff;
-    --confetti-color-7: #ff8fab;
-    --confetti-shadow-color: rgba(255, 255, 255, 0.12);
+    /* --- Tooltip（鼠标悬停提示气泡）--- */
+    --tooltip-background-color: var(--accent-color); /* 提示气泡背景：强调色 */
+    --tooltip-text-color: var(--text-color); /* 提示气泡文字：白色 */
+
+    /* --- Animated Logo（启动动画 Logo）--- */
+    --animated-logo-banner-start-color: var(--accent-color); /* 横幅动画起始颜色（蓝） */
+    --animated-logo-banner-middle-color: var(--error-color); /* 横幅动画中间颜色（红） */
+    --animated-logo-banner-end-color: var(--accent-color); /* 横幅动画结束颜色（蓝），形成蓝→红→蓝渐变扫过 */
+    --animated-logo-text-start-color: #dbe6ff; /* Logo 文字渐变起始色（淡蓝白） */
+    --animated-logo-text-middle-color: #ffd4cf; /* Logo 文字渐变中间色（淡粉） */
+    --animated-logo-text-end-color: #dbe6ff; /* Logo 文字渐变结束色（淡蓝白） */
+    --animated-logo-foreground-color: var(--text-color); /* Logo 前景元素（白色） */
+    --animated-logo-divider-color: var(--text-color); /* Logo 上的分隔线颜色 */
+    --animated-logo-anniversary-highlight-color: var(--warning-color); /* 周年庆（纪念日）特别高亮颜色（黄） */
+    --animated-logo-glow-primary-color: color-mix(in srgb, var(--accent-color) 22%, transparent); /* Logo 主光晕：强调色 22% 淡化 */
+    --animated-logo-glow-secondary-color: color-mix(in srgb, var(--error-color) 12%, transparent); /* Logo 次级光晕：错误色 12% 淡化 */
+
+    /* --- Confetti（庆祝彩带粒子）--- */
+    --confetti-color-1: #4677ff; /* 彩带颜色 1：蓝 */
+    --confetti-color-2: #fc4130; /* 彩带颜色 2：红 */
+    --confetti-color-3: #67d24a; /* 彩带颜色 3：绿 */
+    --confetti-color-4: #ffd166; /* 彩带颜色 4：黄 */
+    --confetti-color-5: #ffffff; /* 彩带颜色 5：白 */
+    --confetti-color-6: #8ad9ff; /* 彩带颜色 6：天蓝 */
+    --confetti-color-7: #ff8fab; /* 彩带颜色 7：粉 */
+    --confetti-shadow-color: rgba(255, 255, 255, 0.12); /* 彩带粒子的浅色阴影，增强立体感 */
 }
