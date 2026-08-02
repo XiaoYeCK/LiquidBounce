@@ -10,7 +10,8 @@
         exitClient,
         getClientUpdate,
         openScreen,
-        toggleBackgroundShaderEnabled
+        toggleBackgroundShaderEnabled,
+        translate
     } from "../../../integration/rest";
     import {fly} from "svelte/transition";
     import {onMount} from "svelte";
@@ -20,7 +21,22 @@
     let regularButtonsShown = true;
     let clientButtonsShown = false;
 
+    const TITLE_TRANSLATION_KEYS = {
+        singleplayer: "menu.singleplayer",
+        multiplayer: "menu.multiplayer",
+        options: "menu.options",
+        quit: "menu.quit"
+    };
+
+    let titleTranslations: Record<string, string> = {};
+
     onMount(() => {
+        translate(Object.values(TITLE_TRANSLATION_KEYS)).then(translations => {
+            titleTranslations = translations;
+        }).catch(() => {
+            // Keep the English fallbacks if translations cannot be fetched.
+        });
+
         setTimeout(async () => {
             const clientUpdate = await getClientUpdate();
 
@@ -58,16 +74,19 @@
     <div class="content">
         <div class="main-buttons">
             {#if regularButtonsShown}
-                <MainButton title="Singleplayer" icon="singleplayer" index={0}
+                <MainButton title={titleTranslations[TITLE_TRANSLATION_KEYS.singleplayer] ?? "Singleplayer"}
+                            icon="singleplayer" index={0}
                             on:click={() => openScreen("singleplayer")}/>
 
-                <MainButton title="Multiplayer" icon="multiplayer" let:parentHovered
+                <MainButton title={titleTranslations[TITLE_TRANSLATION_KEYS.multiplayer] ?? "Multiplayer"}
+                            icon="multiplayer" let:parentHovered
                             on:click={() => openScreen("multiplayer")} index={1}>
                     <ChildButton title="Realms" icon="realms" {parentHovered}
                                  on:click={() => openScreen("multiplayer_realms")}/>
                 </MainButton>
                 <MainButton title="LiquidBounce" icon="liquidbounce" on:click={toggleButtons} index={2}/>
-                <MainButton title="Options" icon="options" on:click={() => openScreen("options")} index={3}/>
+                <MainButton title={titleTranslations[TITLE_TRANSLATION_KEYS.options] ?? "Options"} icon="options"
+                            on:click={() => openScreen("options")} index={3}/>
             {:else if clientButtonsShown}
                 <MainButton title="Proxy Manager" icon="proxymanager" on:click={() => openScreen("proxymanager")}
                             index={0}/>
@@ -79,7 +98,8 @@
 
         <div class="additional-buttons" transition:fly|global={{duration: 700, y: 100}}>
             <ButtonContainer>
-                <IconTextButton icon="icon-exit.svg" title="Exit" on:click={exitClient}/>
+                <IconTextButton icon="icon-exit.svg"
+                                title={titleTranslations[TITLE_TRANSLATION_KEYS.quit] ?? "Exit"} on:click={exitClient}/>
                 <IconTextButton icon="icon-change-background.svg" title="Toggle Shader"
                                 on:click={toggleBackgroundShaderEnabled}/>
             </ButtonContainer>

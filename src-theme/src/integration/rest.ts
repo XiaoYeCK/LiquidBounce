@@ -199,6 +199,18 @@ export async function getPrintableKeyName(key: string): Promise<PrintableKey> {
     return data;
 }
 
+export async function translate(keys: string[]): Promise<Record<string, string>> {
+    const searchParams = new URLSearchParams();
+    for (const key of keys) {
+        searchParams.append("key", key);
+    }
+
+    const response = await fetch(`${API_BASE}/client/translate?${searchParams.toString()}`);
+    const data: Record<string, string> = await response.json();
+
+    return data;
+}
+
 export async function getMinecraftKeybinds(): Promise<MinecraftKeybind[]> {
     const response = await fetch(`${API_BASE}/client/keybinds`);
     const data: MinecraftKeybind[] = await response.json();
