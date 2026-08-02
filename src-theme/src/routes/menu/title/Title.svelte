@@ -10,7 +10,7 @@
         exitClient,
         getClientUpdate,
         openScreen,
-        toggleBackgroundShaderEnabled,
+        toggleMinecraftBackground,
         translate
     } from "../../../integration/rest";
     import {fly} from "svelte/transition";
@@ -100,8 +100,8 @@
             <ButtonContainer>
                 <IconTextButton icon="icon-exit.svg"
                                 title={titleTranslations[TITLE_TRANSLATION_KEYS.quit] ?? "Exit"} on:click={exitClient}/>
-                <IconTextButton icon="icon-change-background.svg" title="Toggle Shader"
-                                on:click={toggleBackgroundShaderEnabled}/>
+                <IconTextButton icon="icon-change-background.svg" title="Toggle Background"
+                                on:click={toggleMinecraftBackground}/>
             </ButtonContainer>
         </div>
 

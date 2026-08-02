@@ -59,7 +59,7 @@
   "backgrounds": [
     {
       "name": "background",
-      "types": ["frag", "png"]
+      "types": ["png"]
     }
   ],
   "values": []

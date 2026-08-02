@@ -40,7 +40,6 @@ enum class ClientUniformDefine(val uboName: String, val size: Int) {
     GUI_BLUR("BlurData", std140Size { float + float }),
     GUI_BLUR_KERNEL("BlurKernelData", std140Size { repeat(23) { vec4 } + int }),
     BLEND("BlendData", std140Size { vec4 }),
-    THEME_BACKGROUND("ThemeBackgroundData", std140Size { float + vec2 + vec2 }),
     ;
 
     val bindGroupLayout: BindGroupLayout = BindGroupLayout.builder()

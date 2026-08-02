@@ -47,16 +47,16 @@ private fun Route.getTheme() = get("/{id}") {
     call.respond(accessibleInteropGson.toJsonTree(theme))
 }
 
-// GET /api/v1/client/shader
-private fun Route.getToggleShaderInfo() = get {
+// GET /api/v1/client/background
+private fun Route.getToggleBackgroundInfo() = get {
     call.respond(JsonObject().apply {
-        addProperty("shaderEnabled", ThemeManager.shaderEnabled)
+        addProperty("minecraftBackground", ThemeManager.useMinecraftBackground)
     })
 }
 
-// POST /api/v1/client/shader
-private fun Route.postToggleShader() = post {
-    ThemeManager.shaderEnabled = !ThemeManager.shaderEnabled
+// POST /api/v1/client/background
+private fun Route.postToggleBackground() = post {
+    ThemeManager.useMinecraftBackground = !ThemeManager.useMinecraftBackground
     ConfigSystem.store(ThemeManager)
     call.respond(HttpStatusCode.NoContent)
 }
@@ -82,8 +82,8 @@ internal fun Route.themeRoutes() {
         getCurrentTheme()
         getTheme()
     }
-    route("/shader") {
-        getToggleShaderInfo()
-        postToggleShader()
+    route("/background") {
+        getToggleBackgroundInfo()
+        postToggleBackground()
     }
 }

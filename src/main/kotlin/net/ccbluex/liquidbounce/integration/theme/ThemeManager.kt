@@ -91,17 +91,11 @@ object ThemeManager : Config("theme") {
 
     private val takesInputHandler = InputAcceptor { mc.gui.screen() != null && mc.gui.screen() !is ChatScreen }
 
-    var shaderEnabled by boolean("Shader", false)
-        .onChange { enabled ->
-            if (enabled) {
-                renderScope.launch {
-                    theme?.compileShader()
-                    includedTheme?.compileShader()
-                }
-            }
-
-            return@onChange enabled
-        }
+    /**
+     * When enabled, the vanilla Minecraft dynamic panorama background is shown
+     * instead of the theme background image.
+     */
+    var useMinecraftBackground by boolean("Minecraft Background", false)
 
     internal val reloader = ResourceManagerReloadListener { resourceManager ->
         themes.forEach { it.onResourceManagerReload(resourceManager) }
@@ -226,9 +220,6 @@ object ThemeManager : Config("theme") {
 
     fun loadBackgroundAsync(): CompletableFuture<Unit> = renderScope.future {
         theme?.loadBackgroundImage()
-        if (shaderEnabled) {
-            theme?.compileShader()
-        }
     }
 
     @Suppress("LongParameterList")
@@ -238,23 +229,18 @@ object ThemeManager : Config("theme") {
         mouseX: Int, mouseY: Int,
         delta: Float,
     ): Boolean {
-        val background = if (shaderEnabled) {
-            theme?.backgroundShader
-        } else {
-            theme?.backgroundImage
-        } ?: return false
+        // Let Minecraft render its vanilla background when enabled.
+        if (useMinecraftBackground) {
+            return false
+        }
+
+        val background = theme?.backgroundImage ?: return false
 
         try {
             background.draw(context, width, height, mouseX, mouseY, delta)
             return true
         } catch (e: Exception) {
-            if (shaderEnabled) {
-                logger.warn("Failed to draw theme background, " +
-                    "the shader may be invalid, disabling...", e)
-                shaderEnabled = false
-            } else {
-                logger.warn("Failed to draw theme background", e)
-            }
+            logger.warn("Failed to draw theme background", e)
             return false
         }
     }

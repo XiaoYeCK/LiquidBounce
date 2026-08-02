@@ -18,35 +18,12 @@
  */
 package net.ccbluex.liquidbounce.integration.theme
 
-import com.mojang.blaze3d.GpuFormat
-import com.mojang.blaze3d.pipeline.ColorTargetState
-import com.mojang.blaze3d.pipeline.RenderPipeline
 import com.mojang.blaze3d.platform.NativeImage
-import com.mojang.blaze3d.systems.RenderSystem
-import com.mojang.blaze3d.textures.FilterMode
-import com.mojang.blaze3d.textures.GpuTexture
-import com.mojang.blaze3d.textures.GpuTextureView
-import net.ccbluex.liquidbounce.LiquidBounce
-import net.ccbluex.liquidbounce.render.ClientRenderPipelines.screenQuadSnippet
-import net.ccbluex.liquidbounce.render.ClientRenderPipelines.withUniformBuffer
-import net.ccbluex.liquidbounce.render.ClientUniformDefine
-import net.ccbluex.liquidbounce.render.createRenderPass
-import net.ccbluex.liquidbounce.render.drawBlitOnCurrentLayer
 import net.ccbluex.liquidbounce.render.drawTexQuad
-import net.ccbluex.liquidbounce.utils.client.clientStartDurationMs
-import net.ccbluex.liquidbounce.utils.client.gpuDevice
-import net.ccbluex.liquidbounce.utils.client.mc
-import net.ccbluex.liquidbounce.utils.kotlin.optional
 import net.ccbluex.liquidbounce.utils.render.asTexture
-import net.ccbluex.liquidbounce.utils.render.asTextureSetup
-import net.ccbluex.liquidbounce.utils.render.asView
 import net.ccbluex.liquidbounce.utils.render.textureSetup
-import net.ccbluex.liquidbounce.utils.render.writeStd140
 import net.minecraft.client.gui.GuiGraphicsExtractor
-import net.minecraft.client.gui.render.TextureSetup
-import net.minecraft.resources.Identifier
 import java.io.Closeable
-import java.util.Locale
 
 sealed interface ThemeBackground : Closeable {
 
@@ -101,131 +78,6 @@ sealed interface ThemeBackground : Closeable {
         }
     }
 
-    /**
-     * Background implementation that renders using a custom shader.
-     * @param pipeline the shader render pipeline
-     */
-    class Shader private constructor(
-        private val metadata: ThemeMetadata,
-        private val pipeline: RenderPipeline,
-        private val fshId: Identifier,
-        private val fragmentShader: String,
-    ) : ThemeBackground {
-
-        private val ubo = ClientUniformDefine.THEME_BACKGROUND.createRingBuffer {
-            "ThemeShaderBackground UBO - ${metadata.name}"
-        }
-
-        private var background: GpuTexture? = null
-        private var backgroundView: GpuTextureView? = null
-        private var textureSetup: TextureSetup? = null
-
-        override fun draw(
-            context: GuiGraphicsExtractor,
-            width: Int,
-            height: Int,
-            mouseX: Int,
-            mouseY: Int,
-            delta: Float
-        ): Boolean {
-            val framebufferWidth = mc.window.width
-            val framebufferHeight = mc.window.height
-
-            ubo.rotate()
-            val uboSlice = ubo.currentBuffer().slice()
-            uboSlice.writeStd140 {
-                putFloat(clientStartDurationMs / 1000F)
-                putVec2(mouseX.toFloat(), mouseY.toFloat())
-                putVec2(framebufferWidth.toFloat(), framebufferHeight.toFloat())
-            }
-
-            resizeIfNeeded(framebufferWidth, framebufferHeight)
-
-            backgroundView!!.createRenderPass(
-                { "ThemeShaderBackground Pass - ${metadata.name}" }
-            ).use { pass ->
-                pass.setPipeline(pipeline)
-                pass.setUniform(ClientUniformDefine.THEME_BACKGROUND.uboName, uboSlice)
-                pass.draw(3, 1, 0, 0)
-            }
-
-            context.drawBlitOnCurrentLayer(
-                textureSetup!!,
-                x0 = 0, y0 = 0,
-                x1 = width, y1 = height,
-                u1 = 0f, v1 = 1f,
-                u2 = 1f, v2 = 0f,
-            )
-
-            return true
-        }
-
-        override fun close() {
-            ubo.close()
-            backgroundView?.close()
-            background?.close()
-        }
-
-        override fun onResourceReload() {
-            gpuDevice.precompilePipeline(pipeline) { id, _ ->
-                if (id == fshId) {
-                    fragmentShader
-                } else {
-                    error("Unknown shader id: $id")
-                }
-            }
-        }
-
-        private fun resizeIfNeeded(
-            framebufferWidth: Int,
-            framebufferHeight: Int,
-        ) {
-            if (background == null ||
-                background!!.getWidth(0) != framebufferWidth ||
-                background!!.getHeight(0) != framebufferHeight
-            ) {
-                background?.close()
-                background = gpuDevice.createTexture(
-                    "ThemeBackground/Shader - ${metadata.name} ($framebufferWidth x $framebufferHeight)",
-                    GpuTexture.USAGE_RENDER_ATTACHMENT or GpuTexture.USAGE_TEXTURE_BINDING,
-                    GpuFormat.RGBA8_UNORM, framebufferWidth, framebufferHeight,
-                    1, 1,
-                )
-                backgroundView?.close()
-                backgroundView = background!!.asView()
-                textureSetup = backgroundView!!.asTextureSetup(SAMPLER)
-            }
-        }
-
-        companion object {
-
-            @JvmStatic
-            private val SAMPLER = RenderSystem.getSamplerCache().getRepeat(FilterMode.NEAREST)
-
-            @JvmStatic
-            fun build(
-                metadata: ThemeMetadata,
-                background: Background,
-                fragmentShader: String,
-            ): Shader {
-                val bgName = background.name.lowercase(Locale.US)
-                val themeName = metadata.name.lowercase(Locale.US)
-
-                val fshId = LiquidBounce.identifier("shader/fsh/theme-bg-$themeName-$bgName")
-
-                val pipeline = RenderPipeline.Builder()
-                    .withLocation(LiquidBounce.identifier("pipeline/theme-bg-$themeName"))
-                    .screenQuadSnippet()
-                    .withFragmentShader(fshId)
-                    .withUniformBuffer(ClientUniformDefine.THEME_BACKGROUND)
-                    .withColorTargetState(ColorTargetState.DEFAULT)
-                    .withDepthStencilState(optional())
-                    .build()
-
-                return Shader(metadata, pipeline, fshId, fragmentShader)
-            }
-        }
-    }
 
     /**
      * Draws the background on the screen.

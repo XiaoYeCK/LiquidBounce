@@ -56,6 +56,9 @@ public abstract class MixinScreen implements ScreenAddition {
     @Shadow
     protected abstract <T extends GuiEventListener & Renderable> T addRenderableWidget(T drawableElement);
 
+    @Shadow
+    protected abstract void extractPanorama(GuiGraphicsExtractor graphics, float delta);
+
     @Final
     @Shadow
     @Nullable
@@ -104,6 +107,14 @@ public abstract class MixinScreen implements ScreenAddition {
             }
 
             if (ThemeManager.INSTANCE.drawBackground(context, width, height, mouseX, mouseY, delta)) {
+                ci.cancel();
+                return;
+            }
+
+            // When the vanilla background is selected, render the dynamic panorama
+            // without the dark menu background overlay (extractMenuBackground).
+            if (ThemeManager.INSTANCE.getUseMinecraftBackground()) {
+                this.extractPanorama(context, delta);
                 ci.cancel();
             }
         }

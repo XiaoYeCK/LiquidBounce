@@ -228,42 +228,9 @@ class Theme private constructor(val origin: Origin, url: String) :
         loadFonts()
     }
 
-    var backgroundShader: ThemeBackground? = null
-        private set
-    private val shaderMutex = Mutex()
     var backgroundImage: ThemeBackground? = null
         private set
     private val imageMutex = Mutex()
-
-    suspend fun compileShader(): Boolean = shaderMutex.withLock {
-        if (backgroundShader != null) {
-            return true
-        }
-
-        // todo: allow multiple backgrounds later on
-        val background = metadata.backgrounds.firstOrNull() ?: return false
-        if ("frag" !in background.types) {
-            // not supported
-            return false
-        }
-
-        val fragmentShader = runCatching {
-            get<String>("/backgrounds/${background.name.lowercase(Locale.US)}.frag")
-        }.getOrNull() ?: return false
-
-        withContext(Dispatchers.Minecraft) {
-            backgroundShader = ThemeBackground.Shader.build(
-                metadata,
-                background,
-                fragmentShader,
-            ).also {
-                it.onResourceReload()
-            }
-        }
-
-        logger.info("Compiled shader background for theme ${metadata.name}")
-        return true
-    }
 
     suspend fun loadBackgroundImage(): Boolean = imageMutex.withLock {
         if (backgroundImage != null) {
@@ -311,13 +278,11 @@ class Theme private constructor(val origin: Origin, url: String) :
     fun isOverlaySupported(name: String?) = name != null && metadata.overlays.contains(name)
 
     override fun onResourceManagerReload(manager: ResourceManager) {
-        backgroundShader?.onResourceReload()
         backgroundImage?.onResourceReload()
         logger.info("Reloaded theme '${metadata.name}'.")
     }
 
     override fun close() {
-        backgroundShader?.close()
         backgroundImage?.close()
         componentSettings?.inner?.filterIsInstance<HudComponent>()?.forEach(EventManager::unregisterEventHandler)
     }

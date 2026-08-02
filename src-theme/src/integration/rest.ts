@@ -739,8 +739,8 @@ export async function reconnectToServer() {
     });
 }
 
-export async function toggleBackgroundShaderEnabled() {
-    await fetch(`${API_BASE}/client/shader`, {
+export async function toggleMinecraftBackground() {
+    await fetch(`${API_BASE}/client/background`, {
         method: "POST",
     });
 }
