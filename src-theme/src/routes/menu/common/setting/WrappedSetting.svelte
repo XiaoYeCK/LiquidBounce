@@ -103,6 +103,10 @@
         justify-content: space-between;
         border-radius: 5px;
         transition: ease border-radius .2s;
+
+        img {
+          filter: brightness(0); /* 白色箭头图标，浅色头部上转为深色保证可见 */
+        }
       }
     }
   }

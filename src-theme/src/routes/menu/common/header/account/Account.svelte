@@ -148,8 +148,10 @@
 
     {#if expanded}
         <div class="quick-switcher" transition:fade|global={{ duration: 200, easing: quintOut }}>
-            <!-- svelte-ignore a11y_autofocus -->
-            <input type="text" autofocus class="account-search" placeholder="Search..." bind:value={searchQuery}>
+            <div class="account-search-wrapper">
+                <!-- svelte-ignore a11y_autofocus -->
+                <input type="text" autofocus class="account-search" placeholder="Search..." bind:value={searchQuery}>
+            </div>
 
             {#if accounts.length > 0}
                 {#if renderedAccounts.length > 0}
@@ -260,6 +262,10 @@
       align-items: center;
       transition: ease opacity .2s;
 
+      .icon {
+        filter: brightness(0); /* 白色图标，浅色账号栏上转为深色保证可见 */
+      }
+
       &:disabled {
         pointer-events: none;
         opacity: .5;
@@ -281,6 +287,27 @@
       padding: 15px 20px;
     }
 
+    .account-search-wrapper {
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        background-color: var(--menu-text-color);
+        -webkit-mask-image: url("/img/menu/icon-search.svg");
+        mask-image: url("/img/menu/icon-search.svg");
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+      }
+    }
+
     .account-search {
       background-color: var(--menu-account-search-background-color);
       border: none;
@@ -290,10 +317,6 @@
       width: 100%;
       font-size: 18px;
       border-bottom: solid 4px var(--menu-account-search-border-color);
-      background-image: url("/img/menu/icon-search.svg");
-      background-repeat: no-repeat;
-      background-position: 18px center;
-      background-size: 18px 18px;
     }
 
     .account-list {

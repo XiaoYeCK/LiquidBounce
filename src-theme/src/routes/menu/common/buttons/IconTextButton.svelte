@@ -58,5 +58,10 @@
       font-weight: 500;
       color: var(--menu-text-color);
       padding: 0 30px;
+      transition: ease color .2s;
+    }
+
+    .icon-text-button:not([disabled]):hover .title {
+      color: var(--menu-on-accent-color);
     }
 </style>

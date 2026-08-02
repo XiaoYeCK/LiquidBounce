@@ -99,6 +99,10 @@
     position: fixed;
     transition: ease background-color .2s;
 
+    img {
+      filter: brightness(0); /* 白色关闭图标，浅色模态框上转为深色保证可见 */
+    }
+
     &:hover {
       background-color: var(--menu-modal-close-hover-background-color);
     }

@@ -63,6 +63,10 @@
       height: 30px;
     }
 
+    img[src$="icon-login.svg"] {
+      filter: brightness(0); /* 白色登录图标，浅色选项卡上转为深色保证可见（彩色图标不受影响） */
+    }
+
     &.active {
       border-color: var(--menu-modal-tab-active-border-color);
     }

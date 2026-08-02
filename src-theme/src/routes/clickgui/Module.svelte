@@ -206,6 +206,7 @@
       background-image: url("/img/clickgui/icon-settings-expand.svg");
       background-position: center;
       background-repeat: no-repeat;
+      filter: brightness(0); /* 白色箭头图标，浅色模块列表上转为深色保证可见 */
       opacity: 0.5;
       transform: rotate(-90deg);
       transition: ease opacity 0.2s, ease transform 0.4s;

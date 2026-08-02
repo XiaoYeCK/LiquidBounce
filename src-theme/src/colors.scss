@@ -2,9 +2,9 @@
     /* ===== 基础色板（Foundation）=====
        这些是全局的主题基石颜色，其他所有模块的颜色都会引用它们。
        修改这些值即可整体改变界面观感，实现"换肤"效果。 */
-    --surface-color: #000000; /* 表面色/背景色：所有界面组件的底层底色，此处为纯黑 */
-    --text-color: #ffffff; /* 主文字颜色：用于正文、标题等常规文本，此处为纯白 */
-    --text-dimmed-color: #d3d3d3; /* 次级文字颜色：用于次要信息、说明、占位符等，比主文字略暗，起弱化作用 */
+    --surface-color: #ffffff; /* 表面色/背景色：所有界面组件的底层底色，此处为纯白（浅色主题） */
+    --text-color: #111111; /* 主文字颜色：用于正文、标题等常规文本，此处为近黑（浅色主题） */
+    --text-dimmed-color: #6b7280; /* 次级文字颜色：用于次要信息、说明、占位符等，比主文字略暗，起弱化作用 */
 
     --accent-color: #4677ff; /* 强调色（品牌主色）：用于按钮、选中态、边框、链接等需要突出的元素 */
     --accent-hover-color: color-mix(in srgb, var(--accent-color) 82%, black);
@@ -20,10 +20,11 @@
 
     /* ===== ClickGUI（点击式图形化设置界面）=====
        即按打开设置界面的按钮界面，这里集中定义它的全部配色。 */
-    --clickgui-base-color: var(--surface-color); /* 界面基础底色：直接继承全局表面色（黑） */
+    --clickgui-base-color: var(--surface-color); /* 界面基础底色：直接继承全局表面色（浅色主题下为白） */
     --clickgui-text-color: var(--text-color); /* 界面正文颜色 */
     --clickgui-text-dimmed-color: var(--text-dimmed-color); /* 界面次级文字颜色 */
     --clickgui-grid-color: var(--grid-color); /* 界面背景网格线颜色 */
+    --clickgui-on-accent-color: #ffffff; /* 强调色背景上的前景色：用于蓝底按钮/下拉框上的文字与图标，保证浅色主题下可读 */
 
     /* 基础色透明度阶梯：将基础底色按不同透明度混合到透明背景上，
        得到一档由"几乎全透明"到"近乎实心"的层次，用于区分不同层级的控件背景。
@@ -38,11 +39,11 @@
     --clickgui-base-90-color: color-mix(in srgb, var(--clickgui-base-color) 90%, transparent); /* 90% 透明度：近乎实心 */
 
     --clickgui-description-background-color: var(--clickgui-base-90-color); /* 模块/设置项描述文字的气泡背景（高不透明，保证可读性） */
-    --clickgui-description-shadow-color: var(--clickgui-base-50-color); /* 描述气泡的阴影颜色 */
+    --clickgui-description-shadow-color: color-mix(in srgb, black 25%, transparent); /* 描述气泡的阴影颜色（浅色主题下用黑色淡化，保证阴影可见） */
     --clickgui-description-arrow-color: var(--clickgui-description-background-color); /* 描述气泡的小箭头颜色，与背景一致形成整体 */
 
     --clickgui-overlay-background-color: color-mix(in srgb, black 60%, transparent); /* 界面覆盖层背景：黑色 60% 半透明，用于模态遮罩压暗底层内容 */
-    --clickgui-panel-shadow-color: var(--clickgui-base-50-color); /* 面板阴影颜色 */
+    --clickgui-panel-shadow-color: color-mix(in srgb, black 25%, transparent); /* 面板阴影颜色（浅色主题下用黑色淡化） */
     --clickgui-panel-header-background-color: var(--clickgui-base-90-color); /* 面板标题栏背景 */
     --clickgui-panel-header-border-color: var(--accent-color); /* 面板标题栏下划线/边框，用强调色突出 */
     --clickgui-panel-body-background-color: var(--clickgui-base-80-color); /* 面板主体内容背景 */
@@ -55,20 +56,20 @@
     --clickgui-module-settings-border-color: var(--accent-color); /* 模块设置区的边框 */
 
     --clickgui-search-background-color: var(--clickgui-base-90-color); /* 顶部搜索框背景 */
-    --clickgui-search-shadow-color: var(--clickgui-base-50-color); /* 搜索框阴影 */
+    --clickgui-search-shadow-color: color-mix(in srgb, black 25%, transparent); /* 搜索框阴影（浅色主题下用黑色淡化） */
     --clickgui-search-border-color: var(--accent-color); /* 搜索框边框 */
     --clickgui-search-enabled-color: var(--accent-color); /* 搜索框处于激活状态时的强调色 */
     --clickgui-search-alias-color: color-mix(in srgb, var(--clickgui-text-dimmed-color) 60%, transparent); /* 搜索结果中的别名文字，次级文字再加透明度，进一步弱化 */
     --clickgui-search-hint-color: color-mix(in srgb, var(--clickgui-text-color) 40%, transparent); /* 搜索框占位提示（hint）文字，主文字变淡 */
 
     --clickgui-tabs-background-color: var(--clickgui-base-85-color); /* 左侧分类选项卡（Tab）容器背景 */
-    --clickgui-tabs-shadow-color: var(--clickgui-base-50-color); /* 选项卡容器阴影 */
+    --clickgui-tabs-shadow-color: color-mix(in srgb, black 25%, transparent); /* 选项卡容器阴影（浅色主题下用黑色淡化） */
     --clickgui-tab-hover-background-color: var(--clickgui-base-70-color); /* 选项卡鼠标悬停背景 */
     --clickgui-tab-active-background-color: var(--accent-subtle-background-color); /* 当前激活选项卡背景：淡强调色 */
     --clickgui-tab-active-border-color: var(--accent-color); /* 当前激活选项卡边框：强调色 */
 
     --clickgui-window-background-color: var(--clickgui-base-80-color); /* 悬浮窗口（如独立设置窗）背景 */
-    --clickgui-window-shadow-color: var(--clickgui-base-50-color); /* 悬浮窗口阴影 */
+    --clickgui-window-shadow-color: color-mix(in srgb, black 25%, transparent); /* 悬浮窗口阴影（浅色主题下用黑色淡化） */
     --clickgui-window-header-background-color: var(--clickgui-base-90-color); /* 悬浮窗口标题栏背景 */
     --clickgui-window-header-border-color: var(--accent-color); /* 悬浮窗口标题栏下边框 */
 
@@ -90,11 +91,11 @@
     --clickgui-selection-chip-selected-color: var(--accent-color); /* 选中标签文字：强调色 */
     --clickgui-selection-chip-remove-background-color: color-mix(in srgb, var(--error-color) 10%, transparent); /* 标签"移除"按钮背景：错误色 10% 淡红 */
     --clickgui-selection-chip-remove-color: var(--error-color); /* 标签"移除"按钮图标：错误红色 */
-    --clickgui-switch-track-color: color-mix(in srgb, var(--clickgui-text-color) 45%, black); /* 开关（Switch）未开启时的滑轨颜色：白色 45% 与黑混合 */
+    --clickgui-switch-track-color: color-mix(in srgb, var(--clickgui-text-color) 45%, white); /* 开关（Switch）未开启时的滑轨颜色：主文字 45% 与白混合，浅色下呈浅灰 */
     --clickgui-switch-thumb-color: var(--clickgui-text-color); /* 开关未开启时的滑块（圆形按钮）颜色 */
-    --clickgui-switch-track-active-color: color-mix(in srgb, var(--accent-color) 40%, black); /* 开关开启时的滑轨颜色：强调色 40% 与黑混合 */
+    --clickgui-switch-track-active-color: color-mix(in srgb, var(--accent-color) 40%, white); /* 开关开启时的滑轨颜色：强调色 40% 与白混合，浅色下呈淡蓝 */
     --clickgui-switch-thumb-active-color: var(--accent-color); /* 开关开启时的滑块颜色：强调色 */
-    --clickgui-slider-track-color: color-mix(in srgb, var(--clickgui-text-color) 20%, black); /* 滑块（Slider）未填充轨道颜色 */
+    --clickgui-slider-track-color: color-mix(in srgb, var(--clickgui-text-color) 20%, white); /* 滑块（Slider）未填充轨道颜色：浅色下呈浅灰 */
     --clickgui-slider-handle-color: var(--clickgui-button-background-color); /* 滑块的手柄（拖拽圆点）颜色 */
     --clickgui-slider-fill-color: var(--clickgui-button-background-color); /* 滑块已填充部分的颜色 */
     --clickgui-color-picker-border-color: var(--accent-color); /* 颜色选择器的边框 */
@@ -120,11 +121,11 @@
     --clickgui-hud-editor-draggable-element-position-outline-color: var(--accent-color); /* 元素位置预览框的外框颜色 */
     --clickgui-hud-editor-draggable-element-position-background-color: color-mix(in srgb, var(--accent-color) 30%, transparent); /* 元素位置预览框的背景 */
     --clickgui-hud-editor-component-settings-background-color: var(--clickgui-base-80-color); /* 选中组件的设置面板背景 */
-    --clickgui-hud-editor-component-settings-shadow-color: var(--clickgui-base-50-color); /* 组件设置面板阴影 */
+    --clickgui-hud-editor-component-settings-shadow-color: color-mix(in srgb, black 25%, transparent); /* 组件设置面板阴影（浅色主题下用黑色淡化） */
     --clickgui-hud-editor-drawer-toggle-button-background-color: var(--accent-color); /* 抽屉面板展开/收起按钮背景 */
-    --clickgui-hud-editor-drawer-toggle-button-color: var(--text-color); /* 抽屉按钮上的文字/图标颜色 */
+    --clickgui-hud-editor-drawer-toggle-button-color: var(--clickgui-on-accent-color); /* 抽屉按钮上的文字/图标颜色 */
     --clickgui-hud-editor-drawer-background-color: var(--clickgui-base-80-color); /* 抽屉面板（侧边组件列表）背景 */
-    --clickgui-hud-editor-drawer-shadow-color: var(--clickgui-base-50-color); /* 抽屉面板阴影 */
+    --clickgui-hud-editor-drawer-shadow-color: color-mix(in srgb, black 25%, transparent); /* 抽屉面板阴影（浅色主题下用黑色淡化） */
     --clickgui-hud-editor-drawer-component-background-color: var(--clickgui-base-85-color); /* 抽屉中单个组件条目背景 */
     --clickgui-hud-editor-drawer-component-border-color: var(--clickgui-base-85-color); /* 组件条目边框（默认与背景同色，即无边框） */
     --clickgui-hud-editor-drawer-component-hover-background-color: var(--accent-subtle-background-color); /* 组件条目悬停背景：淡强调色 */
@@ -137,6 +138,7 @@
     --menu-base-color: var(--surface-color); /* 菜单基础底色 */
     --menu-text-color: var(--text-color); /* 菜单正文颜色 */
     --menu-text-dimmed-color: var(--text-dimmed-color); /* 菜单次级文字颜色 */
+    --menu-on-accent-color: #ffffff; /* 强调色背景上的前景色：用于蓝底按钮/下拉/列表悬停项上的文字与图标 */
     --menu-error-color: var(--error-color); /* 菜单中的错误提示颜色 */
     --menu-account-premium-color: var(--premium-color); /* 高级（Premium）账号标识颜色 */
     --menu-button-loader-color: var(--menu-text-color); /* 按钮内的加载指示器（转圈动画）颜色 */
@@ -157,7 +159,7 @@
     --menu-list-background-color: var(--menu-base-68-color); /* 列表（如账号列表、服务器列表）背景 */
     --menu-list-item-background-color: var(--menu-base-36-color); /* 列表中单个条目背景 */
     --menu-list-item-hover-background-color: var(--accent-color); /* 列表条目悬停背景：强调色 */
-    --menu-list-item-hover-subtitle-color: var(--menu-text-color); /* 列表条目悬停时的副标题文字颜色 */
+    --menu-list-item-hover-subtitle-color: var(--menu-on-accent-color); /* 列表条目悬停时的副标题文字颜色（强调色背景上，用白色前景） */
     --menu-list-tag-background-color: var(--menu-base-36-color); /* 列表条目的标签（Tag）背景 */
     --menu-icon-text-button-background-color: var(--menu-base-36-color); /* 图标+文字组合按钮的背景 */
     --menu-icon-text-button-accent-color: var(--accent-color); /* 图标+文字按钮的强调色部分 */
@@ -180,9 +182,9 @@
     --menu-input-divider-color: var(--menu-base-color); /* 输入框分隔线 */
     --menu-input-error-border-color: var(--menu-error-color); /* 输入框校验出错时的边框 */
     --menu-input-icon-background-color: var(--accent-color); /* 输入框图标背景 */
-    --menu-switch-track-color: color-mix(in srgb, var(--menu-text-color) 45%, black); /* 菜单开关未开启滑轨颜色 */
+    --menu-switch-track-color: color-mix(in srgb, var(--menu-text-color) 45%, white); /* 菜单开关未开启滑轨颜色：浅色下呈浅灰 */
     --menu-switch-thumb-color: var(--menu-text-color); /* 菜单开关未开启滑块颜色 */
-    --menu-switch-track-active-color: color-mix(in srgb, var(--accent-color) 40%, black); /* 菜单开关开启滑轨颜色 */
+    --menu-switch-track-active-color: color-mix(in srgb, var(--accent-color) 40%, white); /* 菜单开关开启滑轨颜色：浅色下呈淡蓝 */
     --menu-switch-thumb-active-color: var(--accent-color); /* 菜单开关开启滑块颜色 */
     --menu-button-background-color: var(--accent-color); /* 菜单普通按钮背景 */
     --menu-button-hover-background-color: var(--accent-hover-color); /* 菜单普通按钮悬停背景 */
@@ -190,7 +192,7 @@
     --menu-button-secondary-hover-background-color: var(--menu-base-color); /* 次级按钮悬停背景 */
     --menu-modal-backdrop-color: color-mix(in srgb, black 60%, transparent); /* 模态弹窗遮罩：黑色 60% 半透明 */
     --menu-modal-background-color: var(--menu-base-80-color); /* 模态弹窗主体背景 */
-    --menu-modal-shadow-color: var(--menu-base-50-color); /* 模态弹窗阴影 */
+    --menu-modal-shadow-color: color-mix(in srgb, black 25%, transparent); /* 模态弹窗阴影（浅色主题下用黑色淡化） */
     --menu-modal-title-accent-color: var(--accent-color); /* 模态弹窗标题强调色 */
     --menu-modal-close-border-color: var(--menu-text-color); /* 弹窗关闭按钮边框 */
     --menu-modal-close-hover-background-color: color-mix(in srgb, var(--menu-text-color) 10%, transparent); /* 关闭按钮悬停背景：主文字 10% 淡化 */
@@ -215,6 +217,7 @@
     --tabgui-base-color: var(--surface-color); /* TabGUI 基础底色 */
     --tabgui-text-color: var(--text-color); /* TabGUI 文字颜色 */
     --tabgui-text-dimmed-color: var(--text-dimmed-color); /* TabGUI 次级文字颜色 */
+    --tabgui-on-accent-color: #ffffff; /* 激活分类（强调色背景）上的文字前景色 */
     --tabgui-base-36-color: color-mix(in srgb, var(--tabgui-base-color) 36%, transparent); /* 36%：选中模块条目背景 */
     --tabgui-base-50-color: color-mix(in srgb, var(--tabgui-base-color) 50%, transparent); /* 50%：分类/模块列表背景 */
     --tabgui-base-68-color: color-mix(in srgb, var(--tabgui-base-color) 68%, transparent); /* 68%：图标背景 */
@@ -227,7 +230,7 @@
     /* --- ArrayList（已启用模块列表）--- */
     --arraylist-base-color: var(--surface-color); /* ArrayList 基础底色 */
     --arraylist-text-color: var(--text-color); /* 模块名称文字颜色 */
-    --arraylist-tag-color: #aaaaaa; /* 模块标签/状态文字颜色（如隐藏标记），灰色 */
+    --arraylist-tag-color: #7a808a; /* 模块标签/状态文字颜色（如隐藏标记），中灰，浅色背景下保证可读 */
     --arraylist-background-color: color-mix(in srgb, var(--arraylist-base-color) 68%, transparent); /* 列表条目的半透明背景 */
     --arraylist-border-color: var(--accent-color); /* 列表条目左侧的强调色竖线/边框 */
 
@@ -312,18 +315,18 @@
 
     /* --- Tooltip（鼠标悬停提示气泡）--- */
     --tooltip-background-color: var(--accent-color); /* 提示气泡背景：强调色 */
-    --tooltip-text-color: var(--text-color); /* 提示气泡文字：白色 */
+    --tooltip-text-color: #ffffff; /* 提示气泡文字：固定白色（强调色背景上保证可读） */
 
     /* --- Animated Logo（启动动画 Logo）--- */
     --animated-logo-banner-start-color: var(--accent-color); /* 横幅动画起始颜色（蓝） */
     --animated-logo-banner-middle-color: var(--error-color); /* 横幅动画中间颜色（红） */
     --animated-logo-banner-end-color: var(--accent-color); /* 横幅动画结束颜色（蓝），形成蓝→红→蓝渐变扫过 */
-    --animated-logo-text-start-color: #dbe6ff; /* Logo 文字渐变起始色（淡蓝白） */
-    --animated-logo-text-middle-color: #ffd4cf; /* Logo 文字渐变中间色（淡粉） */
-    --animated-logo-text-end-color: #dbe6ff; /* Logo 文字渐变结束色（淡蓝白） */
+    --animated-logo-text-start-color: #5f72b8; /* Logo 文字渐变起始色（深蓝，浅色背景下可见） */
+    --animated-logo-text-middle-color: #c26a7a; /* Logo 文字渐变中间色（深粉） */
+    --animated-logo-text-end-color: #5f72b8; /* Logo 文字渐变结束色（深蓝） */
     --animated-logo-foreground-color: var(--text-color); /* Logo 前景元素（白色） */
     --animated-logo-divider-color: var(--text-color); /* Logo 上的分隔线颜色 */
-    --animated-logo-anniversary-highlight-color: var(--warning-color); /* 周年庆（纪念日）特别高亮颜色（黄） */
+    --animated-logo-anniversary-highlight-color: color-mix(in srgb, var(--warning-color) 55%, black); /* 周年庆（纪念日）特别高亮颜色（深黄，浅色背景下保证对比度） */
     --animated-logo-glow-primary-color: color-mix(in srgb, var(--accent-color) 22%, transparent); /* Logo 主光晕：强调色 22% 淡化 */
     --animated-logo-glow-secondary-color: color-mix(in srgb, var(--error-color) 12%, transparent); /* Logo 次级光晕：错误色 12% 淡化 */
 
@@ -332,8 +335,8 @@
     --confetti-color-2: #fc4130; /* 彩带颜色 2：红 */
     --confetti-color-3: #67d24a; /* 彩带颜色 3：绿 */
     --confetti-color-4: #ffd166; /* 彩带颜色 4：黄 */
-    --confetti-color-5: #ffffff; /* 彩带颜色 5：白 */
+    --confetti-color-5: #3a3f4b; /* 彩带颜色 5：深灰蓝（浅色背景下替代白色保证可见） */
     --confetti-color-6: #8ad9ff; /* 彩带颜色 6：天蓝 */
     --confetti-color-7: #ff8fab; /* 彩带颜色 7：粉 */
-    --confetti-shadow-color: rgba(255, 255, 255, 0.12); /* 彩带粒子的浅色阴影，增强立体感 */
+    --confetti-shadow-color: rgba(0, 0, 0, 0.12); /* 彩带粒子的深色阴影（浅色主题下保证可见） */
 }

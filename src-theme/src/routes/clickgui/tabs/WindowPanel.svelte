@@ -60,6 +60,10 @@
     font-weight: 600;
   }
 
+  .icon {
+    filter: brightness(0); /* 白色图标，浅色标题栏上转为深色保证可见 */
+  }
+
   .content {
     padding: 12px 22px 18px;
     overflow: auto;

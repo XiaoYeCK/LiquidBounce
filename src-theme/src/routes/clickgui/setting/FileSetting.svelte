@@ -86,6 +86,7 @@
 
     .icon {
       height: 18px;
+      filter: brightness(0); /* 白色图标，浅色背景上转为深色保证可见 */
     }
   }
 

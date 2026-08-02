@@ -144,6 +144,7 @@
             width: 10px;
             height: 10px;
             flex: 0 0 10px;
+            filter: brightness(0); /* 白色移除图标，浅色设置面板上转为深色保证可见 */
           }
 
         }

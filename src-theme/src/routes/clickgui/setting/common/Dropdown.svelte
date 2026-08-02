@@ -124,7 +124,7 @@
 
     .text {
       font-weight: 500;
-      color: var(--clickgui-text-color);
+      color: var(--clickgui-on-accent-color);
       font-size: 12px;
       overflow: hidden;
       text-overflow: ellipsis;

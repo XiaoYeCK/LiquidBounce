@@ -51,6 +51,10 @@
     &:hover {
       background-position: left bottom;
 
+      .title {
+        color: var(--menu-on-accent-color);
+      }
+
       .icon {
         background-color: var(--menu-main-button-icon-hover-background-color);
         color: var(--menu-main-button-icon-hover-foreground-color);
@@ -60,7 +64,7 @@
 
   .icon {
     background-color: var(--menu-main-button-icon-background-color);
-    color: var(--menu-main-button-icon-foreground-color);
+    color: var(--menu-on-accent-color);
     width: 90px;
     height: 90px;
     border-radius: 50%;

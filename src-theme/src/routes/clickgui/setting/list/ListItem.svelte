@@ -85,4 +85,8 @@
     white-space: nowrap;
     overflow: hidden;
   }
+
+  .tick img[src$="icon-tick.svg"] {
+    filter: brightness(0); /* 未启用的白色勾，浅色列表上转为深色保证可见（已启用的蓝色勾不受影响） */
+  }
 </style>

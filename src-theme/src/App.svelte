@@ -38,8 +38,6 @@
         "/browser": Browser
     };
 
-    const SURFACE_TINT_MIX = 18;
-
     function isMenuRoute(route: string): boolean {
         return route in menuRoutes;
     }
@@ -62,26 +60,16 @@
         return rgbaToHex(intToRgba(value));
     }
 
-    function mixColors(leftColor: string, rightColor: string, strength: number) {
-        return `color-mix(in srgb, ${leftColor} ${100 - strength}%, ${rightColor})`;
-    }
-
     function applyAccentColor(color: number) {
         setThemeColor("accent-color", themeColorToHex(color));
     }
 
-    function applyTintColor(defaultSurfaceColor: string, color: number) {
-        setThemeColor("surface-color", mixColors(defaultSurfaceColor, themeColorToHex(color), SURFACE_TINT_MIX));
-    }
-
     onMount(async () => {
         let metadata = await getMetadata();
-        let defaultSurfaceColor = metadata.colors.Tint;
 
         let theme = await getTheme(metadata.id);
 
         applyAccentColor(theme.colors.accent);
-        applyTintColor(defaultSurfaceColor, theme.colors.tint);
 
         await insertPersistentData();
 
@@ -93,9 +81,6 @@
             switch (event.name) {
                 case "Accent":
                     applyAccentColor(event.value);
-                    break;
-                case "Tint":
-                    applyTintColor(defaultSurfaceColor, event.value);
                     break;
             }
         });

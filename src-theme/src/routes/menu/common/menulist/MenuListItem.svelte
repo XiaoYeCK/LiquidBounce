@@ -64,6 +64,10 @@
     &:hover {
       background-color: var(--menu-list-item-hover-background-color);
 
+      .title .text {
+        color: var(--menu-on-accent-color);
+      }
+
       .subtitle {
         color: var(--menu-list-item-hover-subtitle-color);
       }

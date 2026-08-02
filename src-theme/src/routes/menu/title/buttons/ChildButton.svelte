@@ -13,7 +13,7 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="child-button" on:click|stopPropagation={() => dispatch("click")} class:parent-hovered={parentHovered}>
-    <ToolTip color="var(--menu-base-color)" text="Join Realms server" />
+    <ToolTip color="var(--menu-text-color)" text="Join Realms server" />
 
     <div class="icon">
         <TitleButtonIcon {icon} />
@@ -47,7 +47,7 @@
     }
 
     .title {
-      color: var(--menu-text-color);
+      color: var(--menu-on-accent-color);
       font-weight: 600;
       font-size: 16px;
       transition: ease color 0.2s;
@@ -55,7 +55,7 @@
     }
 
     .icon { /* necessary because svelte's transition system sucks */
-      color: var(--menu-child-button-icon-color);
+      color: var(--menu-on-accent-color);
       width: 28px;
       height: 28px;
       transition: ease color 0.2s;

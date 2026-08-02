@@ -39,6 +39,7 @@
     left: 5px;
     top: 50%;
     transform: translateY(-50%);
+    filter: brightness(0); /* 白色状态图标，浅色状态面板上转为深色保证可见 */
   }
 
   .progress {

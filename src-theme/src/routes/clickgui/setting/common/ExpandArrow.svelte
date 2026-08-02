@@ -28,6 +28,7 @@
 
     &::after {
       @include icon-settings-expand($right: 0);
+      filter: brightness(0); /* 白色箭头图标，浅色设置区上转为深色保证可见 */
     }
 
     &.expanded::after {

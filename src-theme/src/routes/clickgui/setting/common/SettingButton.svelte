@@ -9,7 +9,7 @@
     font-family: "Inter", sans-serif;
     font-weight: 500;
     font-size: 12px;
-    color: var(--clickgui-text-color);
+    color: var(--clickgui-on-accent-color);
     background-color: var(--clickgui-button-background-color);
     border: none;
     padding: 6px 10px;

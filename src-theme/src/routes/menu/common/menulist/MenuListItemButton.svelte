@@ -25,5 +25,6 @@
   .icon {
     height: 27px;
     width: 27px;
+    filter: brightness(0); /* 白色图标，浅色列表上转为深色保证可见 */
   }
 </style>

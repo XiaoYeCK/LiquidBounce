@@ -249,6 +249,10 @@
       color: var(--clickgui-text-color);
       font-weight: 500;
     }
+
+    .icon {
+      filter: brightness(0); /* 图标 SVG 为白色，浅色标题栏上转为深色保证可见 */
+    }
   }
 
   .modules {

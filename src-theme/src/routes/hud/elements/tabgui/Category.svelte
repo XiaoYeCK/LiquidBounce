@@ -53,6 +53,7 @@
 
         &.selected .name {
             background-position: left bottom;
+            color: var(--tabgui-on-accent-color);
         }
     }
 

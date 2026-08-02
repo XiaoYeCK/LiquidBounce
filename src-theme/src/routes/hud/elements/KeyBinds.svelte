@@ -70,6 +70,7 @@
     .icon {
       width: 16px;
       height: 16px;
+      filter: brightness(0); /* 白色图标，浅色标题栏上转为深色保证可见 */
     }
   }
 

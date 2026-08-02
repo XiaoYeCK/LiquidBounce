@@ -70,7 +70,7 @@
     transition: ease border-radius .2s;
 
     .title {
-      color: var(--menu-text-color);
+      color: var(--menu-on-accent-color);
       font-size: 20px;
       font-weight: 500;
     }
